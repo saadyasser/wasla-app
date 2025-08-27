@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Freelancing Platform for Palestinian Freelancers
 
-## Getting Started
+## 📌 Project Overview
+Many Palestinian freelancers struggle to find work because of unstable internet and electricity.
+This creates mistrust from clients, even though the freelancers have the skills to complete projects.
+Our platform provides a trustworthy environment where freelancers can showcase their skills and portfolios, while clients can find reliable talent efficiently.
 
-First, run the development server:
+**Problem Solved:**
+- Our platform helps freelancers show their skills and portfolios.
+- Clients can post projects and choose reliable freelancers.
+- Ratings and feedback build trust.
+- Future AI recommendations will match freelancers to projects based on skills and personal challenges.
+
+
+## 👥 Team Members & Roles
+| Name | Role |
+|------|------|
+| [Eman Hjazi](https://github.com/Eman-Hjazi) | Backend Developer |
+| [Saad](https://github.com/saadyasser) | Fullstack Developer |
+| [Doaa](https://github.com/D0AAO) | UX/UI Designer |
+| [Raghad](https://github.com/raghadabuzainih) | Frontend Developer |
+
+
+
+
+## ⚙️ Technologies Used
+- **Backend:** PHP Laravel  
+- **Frontend:** React, TypeScript, JavaScript, tailwindcss  
+- **Database:** MySQL  
+- **Version Control:** Git, GitHub  
+- **Task Management:** Trello  
+
+
+
+## 🚀 Features (MVP)
+- **User Management:** Secure registration, login, and profile management for freelancers and clients.  
+- **Project Management:** Clients can post projects; freelancers can browse and submit proposals.  
+- **Applications/Proposals:** Freelancers apply; clients accept/reject.  
+- **Ratings & Reviews:** Clients can rate freelancers after project completion.  
+- **Search & Filtering:** Projects filtered by skills or categories.  
+
+
+
+## 🌟 Future Enhancements
+- AI-powered recommendations for matching freelancers to projects.  
+- Support Us page for sponsorships/donations.  
+- Advanced analytics and dashboards.  
+- Payment gateway integration.
+
+
+
+## 📂 Project Structure
+
+```plaintext
+project/
+│
+├── backend/ # Laravel backend
+├── frontend/ # React + TypeScript frontend
+├── README.md # Project documentation
+└── ...
+
+
+## 📌 How to Run Locally
+Make sure Node.js 20, npm 10, PHP 8.2 are installed on your system.
+
+```bash
+git clone https://github.com/saadyasser/wasla-app.git
+cd wasla-app
+```
+
+2- **Install dependencies**
+
+```bash
+cd frontend
+npm install
+```
+
+3- **Run the frontend**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4- **Setup backend (Laravel)**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cd ../backend
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan serve
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+5- Open browser at http://localhost:3000 (frontend) and http://127.0.0.1:8000 (backend)
 
-## Learn More
+## 📄 License
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT License
