@@ -96,3 +96,15 @@ php artisan serve
 ## 📄 License
 
 MIT License
+
+## 📚 Workflow
+
+* We use Gitflow for version control
+* We use the `main` branch for production
+* We use the `develop` branch for development
+* We use the `feature/*` branch for new features
+* We use the `bugfix/*` branch for bug fixes
+* We use the `task/*` branch for tasks
+* No push to develop or main branches
+* All feature branches are created from the `develop` branch
+* No merge to develop should be done before first testing the branch, then code reviewing it
