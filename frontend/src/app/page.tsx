@@ -1,5 +1,5 @@
 "use client"
-import Radio from "@/components/Radio/Radio";
+import Radio from "@/components/radio-button";
 import Image from "next/image";
 import { useState } from "react";
 
