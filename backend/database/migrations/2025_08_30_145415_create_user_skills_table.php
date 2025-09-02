@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->foreignId('skill_id')->constrained('skills')->onDelete('cascade');
 
-            $table->primary(['user_id', 'skill_id']);
+            $table->primary(['freelancer_id', 'skill_id']);
         });
     }
 
