@@ -3,14 +3,16 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\UserRole;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable,HasApiTokens;
     // use Laravel\Sanctum\HasApiTokens;
 
     /**
@@ -21,6 +23,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'role',
         'password',
     ];
 
@@ -44,6 +47,43 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'role' => UserRole::class,
         ];
     }
+
+    public function freelancerProfile(){
+        return $this->hasOne(FreelancerProfile::class);
+    }
+
+    public function clientProfile(){
+        return $this->hasOne(ClientProfile::class);
+    }
+
+
+    public function reviewsGiven()
+    {
+        return $this->hasMany(Review::class, 'reviewer_id');
+    }
+
+    public function reviewsReceived()
+    {
+        return $this->hasMany(Review::class, 'reviewee_id');
+    }
+
+
+
+    public function projects(){
+        return $this->hasMany(Project::class,'client_id');
+    }
+
+    public function applications(){
+        return $this->hasMany(Application::class,'freelancer_id');
+    }
+
+
+    public function skills(){
+        return $this->belongsToMany(Skill::class,'user_skills','user_id','skill_id');
+    }
+
+
 }
