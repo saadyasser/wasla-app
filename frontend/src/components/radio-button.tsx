@@ -13,10 +13,11 @@ interface RadioButtonProps extends Omit<InputHTMLAttributes<HTMLInputElement>, '
   onChange: (value: string) => void;
   className?: string;
   name: string;
+  value: string;
 }
 
 const Radio = forwardRef<HTMLInputElement, RadioButtonProps>(
-  ({ label, options, error, className = '', name, onChange, value, ...props }, ref) => {
+  ({ label, options, error, className = '', name, onChange, value,  ...props }, ref) => {
     return (
       <div className="w-full">
         {label && (
@@ -26,10 +27,10 @@ const Radio = forwardRef<HTMLInputElement, RadioButtonProps>(
         )}
         <div className="space-y-2">
           {options.map((option) => (
-            <label key={option.value} className="flex border p-3
+            <label key={option.value} className={`flex border p-3
 
-                    border-[#E5E7EB]
-                    rounded-lg items-center space-x-2 cursor-pointer">
+                    ${ error ? 'border-red-500' : 'border-[#E5E7EB]'}
+                    rounded-lg items-center space-x-2 cursor-pointer`}>
               <input
                 type="radio"
                 name={name}
