@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('project_skills', function (Blueprint $table) {
+            $table->id();
              $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
             $table->foreignId('skill_id')->constrained('skills')->onDelete('cascade');
 
 
-            // Set both foreign keys as a composite primary key
-            $table->primary(['project_id', 'skill_id']);
+
 
         });
     }

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('portfolios', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('freelancer_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('freelancer_id')->constrained('freelancer_profiles')->onDelete('cascade');
             $table->string('title');
             $table->string('url');
             $table->text('description')->nullable();
