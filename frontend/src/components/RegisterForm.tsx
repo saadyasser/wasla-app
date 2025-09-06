@@ -59,7 +59,7 @@ export default function RegisterForm() {
         onSubmit={handleSubmit}
       >
         {({ isSubmitting, errors, touched }) => (
-          <Form>
+          <Form className="mt-[28px] flex flex-col gap-4">
             {initialValues &&
               (Object.keys(initialValues) as (keyof typeof initialValues)[])
                 .filter(value => value !== 'userType')
@@ -100,7 +100,7 @@ export default function RegisterForm() {
                       form.setFieldValue('userType', value);
                       setUserType(value as 'client' | 'freelancer' | 'supporter');
                     }}
-                    error={touched['userType'] && errors.userType}
+                    error={errors.userType}
                     value={field.value || userType}
                   />
                 )}

@@ -10,7 +10,7 @@ export const AuthFormContainer = () => {
             <>
                 <SignHeader />
                 <div className="rounded-md shadow-sm p-[28px] -space-y-px flex flex-col gap-4">
-                    <div className='flex '>
+                    <div className='flex gap-1'>
                         <button
                             type="button"
                             onClick={() => setVisibleForm('login')}
