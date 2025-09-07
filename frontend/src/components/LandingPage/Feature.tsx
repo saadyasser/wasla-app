@@ -1,10 +1,8 @@
 import { Typography } from "@mui/material"
 import {GridLegacy as Grid} from "@mui/material"
+import { FeatureType } from "@/types/Feature"
 
-interface props{
-    icon: React.ReactNode,
-    title: string,
-    subTitle: string,
+interface props extends FeatureType{
     //there is two sections, second section icons bigger than the first
     sectionNumber: number
 }
