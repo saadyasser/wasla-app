@@ -1,8 +1,4 @@
-import { 
-    Box,  
-    Typography 
-} from "@mui/material"
-
+import { Typography } from "@mui/material"
 import {GridLegacy as Grid} from "@mui/material"
 
 interface props{
@@ -13,7 +9,7 @@ interface props{
     sectionNumber: number
 }
 
-export const LandingFeatures = (
+export const Feature = (
     {
         icon, 
         title, 
