@@ -4,18 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FreelancerProfile extends Model
+class ClientProfile extends Model
 {
-
-
     public function user(){
         return $this->belongsTo(User::class);
     }
-
-
-    public function portfolios(){
-        return $this->hasMany(Portfolio::class,'user_id');
-    }
-
-
 }

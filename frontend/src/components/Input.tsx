@@ -26,11 +26,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             border border-[#E5E7EB] 
             rounded-lg 
             focus:ring-2 focus:ring-blue-300 
-            focus:border-blue-500 
+            focus:border-[#006633]
             outline-none
             transition-all
             duration-200
-            text-gray-400
+            text-gray-500
+            placeholder:text-gray-400
             ${error ? 'border-red-500' : ''}
             ${className}
           `}
