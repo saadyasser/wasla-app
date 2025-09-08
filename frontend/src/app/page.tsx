@@ -7,7 +7,7 @@ import { Section4 } from '@/components/LandingPage/section4';
 
 export default function Home() {
   return(
-    <Grid bgcolor={'white'} height={'100vh'}>
+    <Grid bgcolor={'white'} height={'100%'}>
       <Header />
       <Section2 />
       <Section3 />
