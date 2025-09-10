@@ -2,7 +2,7 @@ import { Button as MUIButton } from "@mui/material"
 import { ReactNode } from "react"
 
 interface ButtonProps {
-    color?: string,
+    color?: "primary" | "secondary" | "success" | "error" | "info" | "warning"
     bgColor?: string,
     size?: "large" | "medium" | "small",
     width?: string,
@@ -16,7 +16,7 @@ interface ButtonProps {
 }
 
 export const Button: React.FC<ButtonProps> = ({
-    color, 
+    color = 'info',
     bgColor, 
     size = "medium",
     width,
@@ -31,13 +31,13 @@ export const Button: React.FC<ButtonProps> = ({
     return(
         <MUIButton 
             size={size}
+            color={color}
             variant={variant}
             disabled={disabled}
             startIcon={startIcon}
             endIcon={endIcon}
             onClick={onClick}
             sx={{
-                color: {color},
                 bgcolor: {bgColor},
                 width: {width},
                 borderRadius: {borderRadius},

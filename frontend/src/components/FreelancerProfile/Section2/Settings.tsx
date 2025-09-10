@@ -1,6 +1,8 @@
 import SettingsIcon from "@mui/icons-material/Settings"
-import { Container, Box, Typography, Chip, TextField } from "@mui/material"
+import { Typography, Chip, TextField } from "@mui/material"
 import { GridLegacy as Grid } from "@mui/material"
+import { Button } from "@/components/Button"
+import { Title } from "./Title"
 
 //every data is temporary
 const fields = [
@@ -18,16 +20,9 @@ const fields = [
 
 export const Settings = ()=> {
     return(
-        <Container sx={{boxShadow: 2, borderRadius: 5, pt: 3, pb: 3, mb: 4}}>
-            <Box sx={{
-                display: 'flex',
-                gap: .5,
-                color: 'black'
-            }}>
-                <SettingsIcon fontSize="small" color="success"/>
-                <Typography fontSize={'small'}>Account Settings</Typography>
-            </Box>
-            <Typography pt={3} pb={1} sx={{color: 'black'}}><b>Profile Information</b></Typography>
+        <>
+            <Title Icon={SettingsIcon} text="Account Settings"/>
+            <Typography pb={1} sx={{color: 'black'}}><b>Profile Information</b></Typography>
             <Grid container spacing={2}>
                 {fields.map(({label, value}) => 
                     <Grid 
@@ -50,7 +45,10 @@ export const Settings = ()=> {
                         />
                     </Grid>
                 )}
+                <Grid display={'grid'} mt={3} justifyContent={'end'} flex={'auto'}>
+                    <Button variant="contained" content="Save Changes" color="success"/>
+                </Grid>
             </Grid>
-        </Container>
+        </>
     )
 }
