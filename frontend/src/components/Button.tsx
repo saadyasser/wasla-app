@@ -38,6 +38,7 @@ export const Button: React.FC<ButtonProps> = ({
             endIcon={endIcon}
             onClick={onClick}
             sx={{
+                color: {color},
                 bgcolor: {bgColor},
                 width: {width},
                 borderRadius: {borderRadius},
