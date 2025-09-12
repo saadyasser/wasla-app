@@ -14,8 +14,14 @@ return new class extends Migration
         Schema::create('freelancer_profiles', function (Blueprint $table) {
             $table->id();
              $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->text('bio')->nullable();
-            $table->decimal('hourly_rate', 8, 2)->nullable();
+            $table->string('title')->default('No headline yet');
+            $table->text('bio')->nullable();;
+            $table->string('location')->nullable();
+            $table->string('profile_image_path')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->string('website')->nullable();
+            $table->boolean('available')->default(true);
+            $table->decimal('hourly_rate', 8, 2)->default(0.00);
             $table->timestamps();
         });
     }
