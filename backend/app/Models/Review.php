@@ -3,22 +3,30 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Review extends Model
 {
-    public function project(){
+    protected $fillable = [
+        'freelancer_profile_id',
+        'project_id',
+        'client_profile_id',
+        'rating',
+        'comment',
+    ];
+
+    public function freelancerProfile(): BelongsTo
+    {
+        return $this->belongsTo(FreelancerProfile::class);
+    }
+
+    public function project(): BelongsTo
+    {
         return $this->belongsTo(Project::class);
     }
 
-    public function reviewer()
+    public function clientProfile(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'reviewer_id');
+        return $this->belongsTo(ClientProfile::class, 'client_profile_id');
     }
-
-    public function reviewee()
-    {
-        return $this->belongsTo(User::class, 'reviewee_id');
-    }
-
-
 }

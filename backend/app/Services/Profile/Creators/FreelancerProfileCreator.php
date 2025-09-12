@@ -3,13 +3,15 @@
 namespace App\Services\Profile\Creators;
 
 use App\Models\User;
+use App\Models\FreelancerProfile;
 use App\Services\Profile\Contracts\ProfileCreator;
 
 class FreelancerProfileCreator implements ProfileCreator
 {
-
-    public function create(User $user): void
+    public function create(User $user): FreelancerProfile
     {
-        $user->freelancerProfile()->create();
+        return $user->freelancerProfile()->create([
+            'bio' => 'No description yet',
+        ]);
     }
 }

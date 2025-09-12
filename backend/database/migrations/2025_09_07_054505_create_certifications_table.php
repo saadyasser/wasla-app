@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('project_skills', function (Blueprint $table) {
+        Schema::create('certifications', function (Blueprint $table) {
             $table->id();
-             $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
-            $table->foreignId('skill_id')->constrained('skills')->onDelete('cascade');
+            $table->foreignId('freelancer_profile_id')->constrained('freelancer_profiles')->onDelete('cascade');
+            $table->string('certification_name');
+            $table->string('certification_url')->nullable();
 
+            $table->timestamps();
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('project_skills');
+        Schema::dropIfExists('certifications');
     }
 };

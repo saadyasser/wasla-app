@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Portfolio extends Model
+class SocialLink extends Model
 {
-    protected $fillable = [
+     protected $fillable = [
         'freelancer_profile_id',
-        'title',
+        'platform_name',
         'url',
-        'description',
     ];
+
     public function freelancerProfile()
     {
         return $this->belongsTo(FreelancerProfile::class);
