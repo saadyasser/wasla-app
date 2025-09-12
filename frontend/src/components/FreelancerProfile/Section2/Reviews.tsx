@@ -31,10 +31,10 @@ export const Reviews = () => {
             <Container sx={{display: 'grid', mb: 5, textAlign: 'center'}}>
                 <Card>
                     <CardContent sx={{p: 2}}>
-                        <Typography color='success' variant='h3'><b>{evaluation}</b></Typography>
+                        <Typography sx={{color: '#006633'}} variant='h3'><b>{evaluation}</b></Typography>
                         <Box display={'flex'} justifySelf={'center'}>
                             {new Array(evaluation).fill(0).map((x, index) =>
-                                <StarIcon key={`review-star-${index}`} fontSize="medium" sx={{color: '#fff700ff'}}/>
+                                <StarIcon key={`review-star-${index}`} fontSize="medium" sx={{color: '#FCC800'}}/>
                             )}
                         </Box>
                         <Typography color='textSecondary'>Based on {reviewsNumber} reviews</Typography>
@@ -48,10 +48,10 @@ export const Reviews = () => {
                             <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} mb={2}>
                                 <Box display={'flex'} gap={2}>
                                     <Typography
-                                        bgcolor={'green'}
+                                        bgcolor={'#006633'}
                                         fontSize={'large'}
-                                        width={50}
-                                        height={50}
+                                        width={'25%'}
+                                        height={'50%'}
                                         borderRadius={10}
                                         sx={{color: 'white'}}
                                         textAlign={'center'}
@@ -64,14 +64,14 @@ export const Reviews = () => {
                                         <Typography color='textDisabled' fontSize={'small'}>{review.completed.toDateString()}</Typography>
                                     </Grid>
                                 </Box>
-                                <Box>
+                                <Box display={'flex'}>
                                     {new Array(review.stars).fill(0).map((x, index) =>
-                                        <StarIcon key={`reviewStar-${index}`} fontSize="small" sx={{color: '#fff700ff'}}/>
+                                        <StarIcon key={`reviewStar-${index}`} fontSize="small" sx={{color: '#FCC800'}}/>
                                     )}
                                 </Box>
                             </Box>
                             <Typography color='textSecondary' mb={2}><em>{`"${review.description}"`}</em></Typography>
-                            <Box display={'flex'} gap={1}>
+                            <Box display={'flex'} gap={1} flexWrap={'wrap'}>
                                 <Chip label={`Project: ${review.project}`}/>
                                 <Chip label={`Budget: $${review.budget}`}/>
                             </Box>

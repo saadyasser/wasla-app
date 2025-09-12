@@ -26,9 +26,8 @@ export const NavBar = ({visibleSection ,setVisibleSection}: props) => {
                 {headers.map(header=> 
                     <Button 
                         key={`freelancerProfile-${header}`}
-                        color={visibleSection == header ? 'success' : 'inherit'}
                         size="small"
-                        sx={{textTransform: 'none'}}
+                        sx={{textTransform: 'none', color: visibleSection === header ? '#006633' : 'black'}}
                         onClick={()=> setVisibleSection(header)}
                     >
                         <b>{header[0].toUpperCase() + header.slice(1).toLowerCase()}</b>

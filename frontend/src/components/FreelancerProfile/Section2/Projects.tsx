@@ -54,20 +54,20 @@ export const Projects = () => {
             {projects.map((project, index) =>
                 <Card key={`project-${index}`} sx={{mb: 5}}>
                     <CardContent>
-                        <Box display={'flex'} justifyContent={'space-between'} >
+                        <Box display={'flex'} justifyContent={'space-between'} sx={{flexDirection: {xs: 'column', sm: 'row'}}}>
                             <Box display={'grid'} gap={2}>
                                 <Box display={'flex'} gap={2}>
                                     <Typography fontSize={'large'}><b>{project.title}</b></Typography>
-                                    <Chip variant="filled" color="success" label={project.status}/>
+                                    <Chip sx={{bgcolor: '#F0FDF4', color: '#006633', fontWeight: 'bold', border: '1px solid #90e4a9ff'}} label={project.status}/>
                                 </Box>
                                 <Typography sx={{color: '#4A5565'}}>{project.description}</Typography>
                                 <Grid container spacing={2}>
                                     {columns.map(column =>
-                                        <Grid key={`${column}-column`} item xs={3}>
+                                        <Grid key={`${column}-column`} item xs={6} sm={3}> 
                                             <Typography color="textDisabled">{column}</Typography>
                                             {column === 'Completed' ? project[column].toDateString() : 
                                             column === 'Client' ? <b>{project[column]}</b> : 
-                                            column === 'Budget' ? <Typography color="success"><b>${project[column]}</b></Typography> :                    
+                                            column === 'Budget' ? <Typography sx={{color: '#006633'}}><b>${project[column]}</b></Typography> :                    
                                             `${project[column]} weeks`}
                                         </Grid>
                                     )}
@@ -80,19 +80,19 @@ export const Projects = () => {
                                 <Box display={'flex'} gap={1}>
                                     <Box>
                                         {new Array(project.stars).fill(0).map((x, index) =>
-                                            <StarIcon key={`start-${index}`} fontSize="small" sx={{color: '#fff700ff'}}/>
+                                            <StarIcon key={`start-${index}`} fontSize="small" sx={{color: '#FCC800'}}/>
                                         )}
                                     </Box>
                                     {project.stars.toFixed(1)}
                                 </Box>
                             </Box>
-                            <Box><Button variant="outlined" color="success" content='Link' startIcon={<LanguageIcon/>}/></Box>
+                            <Box><Button variant="text" fontColor="#006633" content='Link' startIcon={<LanguageIcon/>}/></Box>
                         </Box>
                     </CardContent>
                 </Card>
             )}
             <Box justifySelf={'center'}>
-                <Button color="success" variant="outlined" content="View All Projects" endIcon={<ArrowRightAltIcon />}/>
+                <Button color="success" fontColor="#006633" variant="outlined" content="View All Projects" endIcon={<ArrowRightAltIcon />}/>
             </Box>
         </>
     )

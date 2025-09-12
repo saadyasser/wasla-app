@@ -13,7 +13,7 @@ export const Title = ({Icon, text}: props) => {
             color: 'black',
             pb: 3
         }}>
-            <Icon fontSize="small" color="success"/>
+            <Icon fontSize="small" sx={{color: '#006633'}}/>
             <Typography fontSize={'small'}>{text}</Typography>
         </Box>
     )

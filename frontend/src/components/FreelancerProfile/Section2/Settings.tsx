@@ -27,7 +27,9 @@ export const Settings = ()=> {
                 {fields.map(({label, value}) => 
                     <Grid 
                         key={`${label}-input`} 
-                        item xs={label == "Bio" ? 12 : 6} 
+                        item 
+                        xs={12} 
+                        sm={label == "Bio" ? 12 : 6} 
                         display={'grid'}
                     >
                         <Chip label={label} variant="outlined" sx={{border: 'none', justifySelf: 'start', fontWeight: 'bold'}}/>
@@ -46,7 +48,7 @@ export const Settings = ()=> {
                     </Grid>
                 )}
                 <Grid display={'grid'} mt={3} justifyContent={'end'} flex={'auto'}>
-                    <Button variant="contained" content="Save Changes" color="success"/>
+                    <Button content="Save Changes" bgColor="#006633" fontColor="white" padding={'.5rem 2rem'}/>
                 </Grid>
             </Grid>
         </>
