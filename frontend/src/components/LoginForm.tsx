@@ -38,6 +38,10 @@ export default function LoginForm(){
     // Here you would typically make an API call
   };
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> develop
   return (
     <>
       <Formik
