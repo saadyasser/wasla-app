@@ -6,6 +6,6 @@ use App\Models\User;
 
 interface ProfileCreator
 {
-    public function create(User $user): void;
+    public function create(User $user): mixed;
 
 }

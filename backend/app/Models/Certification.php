@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Portfolio extends Model
+class Certification extends Model
 {
-    protected $fillable = [
+        protected $fillable = [
         'freelancer_profile_id',
-        'title',
-        'url',
-        'description',
+        'certification_name',
+        'certification_url',
     ];
+
     public function freelancerProfile()
     {
         return $this->belongsTo(FreelancerProfile::class);

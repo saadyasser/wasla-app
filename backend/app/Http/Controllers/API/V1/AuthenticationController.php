@@ -6,12 +6,11 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
-use App\Services\Profile\ProfileFactory;
+use App\Services\Auth\RegistrationService;
 use App\Http\Requests\API\V1\Auth\LoginRequest;
 use App\Http\Requests\API\V1\Auth\RegisterRequest;
 
@@ -37,29 +36,16 @@ class AuthenticationController extends Controller
         ], 'Login successful', 200);
     }
 
-    public function register(RegisterRequest $request, ProfileFactory $profileFactory): JsonResponse
+    public function register(RegisterRequest $request, RegistrationService $registrationService): JsonResponse
     {
 
         try {
-            return DB::transaction(function () use ($request, $profileFactory) {
-                $data = $request->validated();
-                $data['password'] = Hash::make($data['password']);
+            $user = $registrationService->registerUser($request->validated());
 
-                $user = User::create($data);
-
-                // Create the appropriate profile based on the user's role
-                $creator = $profileFactory->make($user);
-                $creator->create($user);
-
-                // Create a token for the new user for immediate login after registration
-                $token = $user->createToken('auth_token')->plainTextToken;
-
-
-                return $this->successResponse([
-                    'user' => UserResource::make($user),
-                    'access_token' => $token,
-                ], 'Account created successfully', 201);
-            });
+            return $this->successResponse([
+                'user' => UserResource::make($user),
+                'access_token' => $user->createToken('auth_token')->plainTextToken,
+            ], 'Account created successfully', 201);
         } catch (\Exception $e) {
             Log::error("Registration failed: " . $e->getMessage());
             return $this->errorResponse('Registration failed. Please try again.', 500);

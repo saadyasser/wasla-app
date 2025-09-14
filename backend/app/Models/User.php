@@ -3,16 +3,19 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\Carbon;
 use App\Enums\UserRole;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable,HasApiTokens;
+    use HasFactory, Notifiable, HasApiTokens;
     // use Laravel\Sanctum\HasApiTokens;
 
     /**
@@ -51,39 +54,47 @@ class User extends Authenticatable
         ];
     }
 
-    public function freelancerProfile(){
+    public function freelancerProfile()
+    {
         return $this->hasOne(FreelancerProfile::class);
     }
 
-    public function clientProfile(){
+    public function clientProfile()
+    {
         return $this->hasOne(ClientProfile::class);
     }
 
 
-    public function reviewsGiven()
+    public function projects()
     {
-        return $this->hasMany(Review::class, 'reviewer_id');
+        return $this->hasMany(Project::class, 'client_id');
     }
 
-    public function reviewsReceived()
+    public function applications()
     {
-        return $this->hasMany(Review::class, 'reviewee_id');
+        return $this->hasMany(Application::class, 'freelancer_id');
     }
 
 
-
-    public function projects(){
-        return $this->hasMany(Project::class,'client_id');
+    public function skills()
+    {
+        return $this->belongsToMany(Skill::class, 'user_skills', 'user_id', 'skill_id');
     }
 
-    public function applications(){
-        return $this->hasMany(Application::class,'freelancer_id');
+    protected function password(): Attribute
+    {
+        return Attribute::make(
+            set: fn($value) => Hash::make($value),
+        );
     }
 
-
-    public function skills(){
-        return $this->belongsToMany(Skill::class,'user_skills','user_id','skill_id');
+    /**
+     * Get the formatted creation date for frontend display.
+     */
+    protected function createdAtDate(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value, $attributes) => 'Member since ' . Carbon::parse($attributes['created_at'])->year,
+        );
     }
-
-
 }
