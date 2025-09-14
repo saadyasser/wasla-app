@@ -7,6 +7,7 @@ interface ButtonProps {
     bgColor?: string,
     size?: "large" | "medium" | "small",
     width?: string,
+    height?: string,
     variant?: "outlined" | "contained" | "text",
     disabled?: boolean,
     borderRadius?: string
@@ -23,6 +24,7 @@ export const Button: React.FC<ButtonProps> = ({
     fontColor,
     size = "medium",
     width,
+    height,
     variant,
     disabled = false,
     borderRadius = "8px",
@@ -45,6 +47,7 @@ export const Button: React.FC<ButtonProps> = ({
                 color: fontColor,
                 bgcolor: bgColor,
                 width: width,
+                height: height,
                 borderRadius: borderRadius,
                 p: padding,
                 "&:hover": {
