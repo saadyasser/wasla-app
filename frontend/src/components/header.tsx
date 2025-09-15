@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material"
 
-const   Header = ()=> {
+const Header = async ()=> {
     return(
         <header className="flex justify-between py-4  align-center px-5 md:px-[128px] lg:px-[228px]">
             <div>
