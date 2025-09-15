@@ -1,10 +1,11 @@
 'use client';
 
-import { Formik, Form, Field, FormikHelpers } from 'formik';
+import { Formik, Form, Field, FormikHelpers, type FieldProps, type FormikProps } from 'formik';
 import * as Yup from 'yup';
 import Input from './Input';
 import Radio from './radio-button';
 import { useState } from 'react';
+import { registerHandler } from '../actions/register.action';
 
 const registrationSchema = Yup.object({
   fullName: Yup.string()
@@ -40,13 +41,26 @@ export default function RegisterForm() {
     userType: ''
   };
 
-  const handleSubmit = (
+  const handleSubmit = async (
     values: FormValues,
     { setSubmitting }: FormikHelpers<FormValues>
   ) => {
-    console.log('Form submitted:', values);
-    setSubmitting(false);
-    // Here you would typically make an API call
+    try {
+      const result = await registerHandler({
+        name: values.fullName,
+        email: values.email,
+        password: values.password,
+        password_confirmation: values.password,
+        role: values.userType,
+      });
+      alert('Account created successfully');
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Registration failed';
+      console.error(error);
+      alert(message);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const [userType, setUserType] = useState<'client' | 'freelancer' | 'supporter'>('client');
@@ -65,7 +79,7 @@ export default function RegisterForm() {
                 .filter(value => value !== 'userType')
                 .map(value => (
                   <Field name={value} key={`register-${value}-field`}>
-                    {({ field }: { field: any }) => (
+                    {({ field }: FieldProps) => (
                       <Input
                         {...field}
                         type={
@@ -79,7 +93,7 @@ export default function RegisterForm() {
                         label={
                           value === 'fullName'? 'Full Name': value[0].toUpperCase() + value.slice(1)
                         }
-                        error={touched[value] && errors[value]}
+                        error={touched[value] ? (errors[value] as string | undefined) : undefined}
                       />
                     )}
                   </Field>
@@ -87,7 +101,7 @@ export default function RegisterForm() {
 
             <div>
               <Field name="userType">
-                {({ field, form }: { field: any; form: any }) => (
+                {({ field, form }: FieldProps & { form: FormikProps<FormValues> }) => (
                   <Radio
                     label="I am a:"
                     name="userType"

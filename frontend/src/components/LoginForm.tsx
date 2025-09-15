@@ -3,6 +3,7 @@
 import { Formik, Form, Field, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import Input from './Input';
+import { loginHandler } from '@/actions/login.action';
 
 const LoginSchema = Yup.object({
     //--> INCOMPLETE ** check from data base if email exists & password matches email
@@ -35,13 +36,9 @@ export default function LoginForm(){
   ) => {
     console.log('Form submitted:', values);
     setSubmitting(false);
-    // Here you would typically make an API call
+    loginHandler(values)
   };
 
-<<<<<<< HEAD
-
-=======
->>>>>>> develop
   return (
     <>
       <Formik
