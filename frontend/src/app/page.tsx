@@ -4,7 +4,7 @@ import Header from '@/components/header';
 import { Section2 } from '@/components/LandingPage/section2';
 import { Section3 } from '@/components/LandingPage/section3';
 import { Section4 } from '@/components/LandingPage/section4';
-import { AllSection2 } from '@/components/FreelancerProfile/Section2/AllSection2';
+import { WorkDetails } from '@/components/FindWork/WorkDetails';
 
 export default function Home() {
   return(
@@ -13,7 +13,6 @@ export default function Home() {
       <Section2 />
       <Section3 />
       <Section4 />
-      <AllSection2 />
     </Grid>
   )
 }
