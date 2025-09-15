@@ -106,7 +106,8 @@ class FreelancerProfile extends Model
     public function getProfileImageUrlAttribute(): string
     {
         if ($this->profile_image_path) {
-            return asset('images/freelancerProfiles/' . $this->profile_image_path);
+       return asset('storage/freelancerProfiles/' . $this->profile_image_path);
+
         }
         return 'https://ui-avatars.com/api/?name=' . urlencode($this->user->name) . '&background=random&color=fff';
     }
