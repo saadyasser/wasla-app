@@ -40,7 +40,7 @@ class FreelancerProfileRequest extends FormRequest
             'certifications' => 'sometimes|array',
             'certifications.*.file_name' => 'required_with:certifications|string|max:50',
             'certifications.*.file_path' => 'file|max:5120',
-            // إضافة تعليم
+
             'educations' => 'sometimes|array',
             'educations.*.university' => 'required_with:educations|string|max:255',
             'educations.*.degree' => 'required_with:educations|string|max:255',

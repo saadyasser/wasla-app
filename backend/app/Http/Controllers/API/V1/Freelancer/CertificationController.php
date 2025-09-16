@@ -18,7 +18,7 @@ class CertificationController extends Controller
 
     public function index()
     {
-        $freelancer = auth()->user(); // نفرض إنه الفريلانسر مسجّل دخول
+        $freelancer = auth()->user();
         $certifications = $freelancer->freelancerProfile->certifications()->get();
 
         return $this->successResponse(CertificationResource::collection($certifications), 'Certifications retrieved successfully');
@@ -28,7 +28,7 @@ class CertificationController extends Controller
     {
         $freelancer = auth()->user();
 
-        // نجهز البيانات مع إضافة freelancer_profile_id
+
         $data = $request->validated();
         $data['freelancer_profile_id'] = $freelancer->freelancerProfile->id;
 

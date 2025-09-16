@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Resources\Freelancer;
+
 use App\Http\Resources\ClientProfileResource;
 
 use Illuminate\Http\Request;
@@ -20,6 +21,10 @@ class ProjectResource extends JsonResource
             'deadline' => $this->deadline?->toDateString(),
             'completed_at' => $this->completed_at,
             'rating' => $this->rating,
+            'experience_level' => $this->experience_level,
+            'created_at_human' => $this->created_at->diffForHumans(),
+            'proposals_count' => $this->applications->count(),
+
             'review_comment' => optional($this->review()->latest()->first())->comment,
 
 
@@ -27,7 +32,7 @@ class ProjectResource extends JsonResource
             'client' => ClientProfileResource::make($this->whenLoaded('clientProfile')->user),
 
             // skills names
-            'skills' => SkillResource::collection($this->whenLoaded('skills')),
+            'skills' =>  $this->skills->pluck('name'),
 
         ];
     }

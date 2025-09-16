@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\V1\SkillController;
 use App\Http\Controllers\API\V1\AuthenticationController;
-
+use App\Http\Controllers\API\V1\ProjectController;
 use App\Http\Controllers\API\V1\Freelancer\{
     EducationController,
     PortfolioController,
@@ -19,7 +19,8 @@ Route::post('/register', [AuthenticationController::class, 'register']);
 
 Route::get('/skills', [SkillController::class, 'index']);
 
-
+Route::get('/projects', [ProjectController::class, 'index']);
+Route::get('/projects/{project}', [ProjectController::class, 'show']);
 
 Route::middleware('auth:sanctum')->group(function () {
 
@@ -45,6 +46,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //Portfolio
     Route::apiResource('/freelancer/portfolios', PortfolioController::class)->only(['index', 'store', 'update', 'destroy']);
+
+
 
 
 

@@ -11,7 +11,7 @@ class FreelancerUpdateRequest extends FormRequest
 {
     public function authorize()
     {
-        // هنا يمكنك إضافة منطق السماح؛ بشكل عام السجل يعود لمستخدم موثَّق
+
         return $this->user() && $this->user()->freelancerProfile;
     }
 
@@ -26,7 +26,7 @@ class FreelancerUpdateRequest extends FormRequest
                     ->ignore($this->user()->id),
             ],
 
-            // الحقول الأساسية على الملف الشخصي
+
             'title' => 'sometimes|nullable|string|max:255',
             'bio' => 'sometimes|nullable|string',
             'hourly_rate' => 'sometimes|nullable|numeric|min:0',

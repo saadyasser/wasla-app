@@ -15,9 +15,9 @@ class ClientProfileResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
-            'name' => $this->clientProfile?->user?->name,
-
+            'name' => $this->clientProfile->company_name ?? $this->clientProfile->user->name,
+            'location' => $this->clientProfile->location ?? null,
+            'rating' => $this->review?->rating,
         ];
     }
 }

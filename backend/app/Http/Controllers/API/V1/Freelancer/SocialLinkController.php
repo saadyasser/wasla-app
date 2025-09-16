@@ -15,7 +15,7 @@ class SocialLinkController extends Controller
 {
     use ApiResponse;
 
-    // استرجاع روابط الاجتماعية الخاصة بالمستخدم المسجّل
+
     public function index(): JsonResponse
     {
         $freelancer = auth()->user();
@@ -24,13 +24,13 @@ class SocialLinkController extends Controller
         return $this->successResponse(SocialLinkResource::collection($socialLinks), 'Social links retrieved successfully');
     }
 
-    // تخزين رابط اجتماعي جديد
+
     public function store(SocialLinkRequest $request): JsonResponse
     {
         $freelancer = auth()->user();
 
         $data = $request->validated();
-        // لو عندك حقل foreign key في جدول social_links مثل freelancer_profile_id
+
         $data['freelancer_profile_id'] = $freelancer->freelancerProfile->id;
 
         $socialLink = SocialLink::create($data);
@@ -38,13 +38,13 @@ class SocialLinkController extends Controller
         return $this->successResponse(new SocialLinkResource($socialLink), 'Social link created successfully', 201);
     }
 
-    // تحديث رابط اجتماعي
+
     public function update(SocialLinkRequest $request, $id): JsonResponse
     {
         $freelancer = auth()->user();
         $socialLink = SocialLink::findOrFail($id);
 
-        // تحقق من ملكية الرابط الاجتماعي للمستخدم الحالي
+
         if ($socialLink->freelancerProfile->user->id !== $freelancer->id) {
             return $this->errorResponse('Unauthorized', 403);
         }
@@ -54,7 +54,7 @@ class SocialLinkController extends Controller
         return $this->successResponse(new SocialLinkResource($socialLink), 'Social link updated successfully');
     }
 
-    // حذف رابط اجتماعي
+
     public function destroy($id): JsonResponse
     {
         $socialLink = SocialLink::find($id);

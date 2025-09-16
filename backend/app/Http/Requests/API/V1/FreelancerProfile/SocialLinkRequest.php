@@ -22,20 +22,20 @@ class SocialLinkRequest extends FormRequest
     public function rules(): array
     {
         if ($this->isMethod('post')) {
-            // قواعد الإنشاء
+
             return [
                 'platform_name' => 'required|string|max:255',
                 'url' => 'required|url|max:255',
             ];
         } elseif ($this->isMethod('patch') || $this->isMethod('put')) {
-            // قواعد التحديث تتعامل مع كل الحقول كـ sometimes
+
             return [
                 'platform_name' => 'sometimes|string|max:255',
                 'url' => 'sometimes|url|max:255',
             ];
         }
 
-        // يمكنك إضافة قواعد افتراضية أو لإرجاع مصفوفة فارغة في حالة ما إذا لم تطابق أي من الشروط السابقة
+
         return [];
     }
 }

@@ -22,7 +22,7 @@ class CertificationRequest extends FormRequest
     public function rules(): array
     {
         if ($this->isMethod('post')) {
-            // قواعد الإنشاء
+
             return [
                 'certification_name' => 'required|string|max:255',
                 'certification_url' => 'nullable|url|max:255',
@@ -32,7 +32,7 @@ class CertificationRequest extends FormRequest
                 'description' => 'nullable|string',
             ];
         } elseif ($this->isMethod('patch') || $this->isMethod('put')) {
-            // قواعد التحديث تتعامل مع كل الحقول كـ sometimes
+
             return [
                 'certification_name' => 'sometimes|string|max:255',
                 'certification_url' => 'sometimes|nullable|url|max:255',
@@ -43,7 +43,7 @@ class CertificationRequest extends FormRequest
             ];
         }
 
-        // يمكنك إضافة قواعد افتراضية أو لإرجاع مصفوفة فارغة في حالة ما إذا لم تطابق أي من الشروط السابقة
+
         return [];
     }
 }

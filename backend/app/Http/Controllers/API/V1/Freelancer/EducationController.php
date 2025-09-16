@@ -18,7 +18,7 @@ class EducationController extends Controller
 
     public function index()
     {
-        $freelancer = auth()->user(); // نفرض إنه الفريلانسر مسجّل دخول
+        $freelancer = auth()->user();
         $educations = $freelancer->freelancerProfile->educations()->get();
 
         return $this->successResponse(EducationResource::collection($educations), 'Educations retrieved successfully');
@@ -28,7 +28,7 @@ class EducationController extends Controller
     {
         $freelancer = auth()->user();
 
-        // نجهز البيانات مع إضافة freelancer_profile_id
+
         $data = $request->validated();
         $data['freelancer_profile_id'] = $freelancer->freelancerProfile->id;
 
@@ -45,7 +45,7 @@ class EducationController extends Controller
         $education = Education::findOrFail($id);
 
 
-        // تحقق إن الشهادة مرتبطة بفريلانسر هذا المستخدم
+
         if ($education->freelancerProfile->user->id !== $freelancer->id) {
             return $this->errorResponse('Unauthorized', 403);
         }
