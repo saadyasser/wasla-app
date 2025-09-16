@@ -22,4 +22,5 @@ class ClientProfile extends Model
     {
         return $this->hasMany(Review::class);
     }
+   
 }
