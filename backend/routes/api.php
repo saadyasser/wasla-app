@@ -19,6 +19,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/freelancer/profile', [FreelancerProfileController::class, 'myProfile']);
 
     Route::get('/client/profile', [App\Http\Controllers\Api\V1\ClientProfileController::class, 'myProfile']);
+    Route::put('/client/profile', [App\Http\Controllers\Api\V1\ClientProfileController::class, 'editProfile']);
     // Route to add a skill to the authenticated user's profile
     Route::post('/freelancer/skills', [SkillController::class, 'store']);
 
