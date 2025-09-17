@@ -1,6 +1,7 @@
 import ProfileCard from "@/components/profile-card";
 import { auth } from "../../../auth";
 import type { Session } from "next-auth";
+import { AllSection2 } from "@/components/FreelancerProfile/Section2/AllSection2";
 
 type SessionWithToken = Session & { accessToken?: string };
 
@@ -79,6 +80,7 @@ const ProfilePage = async () => {
                 responseRate={responseRate}
                 responseTime={responseTime}
             />
+            <AllSection2 />
         </div>
     )
 }
