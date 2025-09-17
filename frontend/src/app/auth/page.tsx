@@ -5,7 +5,6 @@ import Header from '@/components/header';
 export default function AuthPage(){
     return(
         <>
-            <Header />
             <AuthLayout>
                 <AuthFormContainer />
             </AuthLayout>

@@ -2,7 +2,7 @@
 import { signIn } from "../../auth"
 
 export const loginHandler = async (formData: { email: string; password: string }) => {
-    await signIn("credentials", {...formData, redirectTo: "/"})
+    await signIn("credentials", {...formData, redirectTo: "/profile"})
   }
 
 export type LoginPayload = {

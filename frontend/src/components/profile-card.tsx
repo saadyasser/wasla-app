@@ -55,7 +55,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
             </div>
                {/* Meta */}
             <div className="flex flex-col gap-1 mt-4 text-sm text-[#4A5565]">
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 justify-center md:justify-start">
                 <MapPin className="w-[14px] h-[14px]" /> {location}
                 </div>
                 <div className="text-sm text-[#4A5565]">Member since {memberSince}</div>
@@ -93,16 +93,16 @@ const ProfileCard: FC<ProfileCardProps> = ({
           </div>
           
       {/* Stats */}
-      <div className="flex gap-4 mt-6 text-center">
-        <div className="w-[200px] p-4 rounded-xl bg-[#F0FDF4] border border-[#DCFCE7]">
+      <div className="flex flex-col items-center md:flex-row gap-4 mt-6 text-center">
+        <div className="w-[150px] lg:w-[200px] p-4 rounded-xl bg-[#F0FDF4] border border-[#DCFCE7]">
           <p className="text-xl font-[700] text-[#00A63E]">{totalEarned}</p>
           <p className="text-xs text-[#4A5565]">Total Earned</p>
         </div>
-        <div className="w-[200px] p-4 rounded-xl bg-[#FFF7ED] border border-[#FFEDD4]">
+        <div className="w-[150px] lg:w-[200px] p-4 rounded-xl bg-[#FFF7ED] border border-[#FFEDD4]">
           <p className="text-xl font-[700] text-[#F54900]">{responseRate}</p>
           <p className="text-xs text-[#4A5565]">Response Rate</p>
         </div>
-        <div className="w-[200px] p-4 rounded-xl bg-[#FAF5FF] border border-[#F3E8FF]">
+        <div className="w-[150px] lg:w-[200px] p-4 rounded-xl bg-[#FAF5FF] border border-[#F3E8FF]">
           <p className="text-xl font-[700] text-[#9810FA]">{responseTime}</p>
           <p className="text-xs text-[#4A5565]">Response Time</p>
         </div>
@@ -113,11 +113,11 @@ const ProfileCard: FC<ProfileCardProps> = ({
         <div className="absolute top-[28px] right-[28px] flex gap-2">
           <button className="flex gap-2 items-center px-3 py-2 text-sm border rounded-lg border-[#E5E7EB] hover:bg-gray-50">
             <EditIcon />
-            <span className="text-sm text-[#1A1A1A]">Edit Profile</span>
+            <span className="hidden md:block  text-sm text-[#1A1A1A]">Edit Profile</span>
           </button>
           <button className="flex gap-2 items-center px-3 py-2 text-sm bg-[#006633] text-white rounded-lg hover:bg-green-700">
             <ContactIcon />
-            <span className="text-sm text-white">Contact</span>
+            <span className="hidden md:block text-sm text-white">Contact</span>
           </button>
         </div>
       </div>

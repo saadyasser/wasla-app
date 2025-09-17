@@ -12,11 +12,6 @@ const LoginSchema = Yup.object({
     .required('Email is required'),
   password: Yup.string()
     .required('Password is required')
-    .min(8, 'Password must be at least 8 characters')
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]/,
-      'Password must contain at least one uppercase letter, one lowercase letter, and one number'
-    )
 });
 
 type FormValues = {
