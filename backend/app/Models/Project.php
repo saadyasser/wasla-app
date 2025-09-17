@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\ProjectStatus;
+use App\Enums\ExperienceLevel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -23,6 +24,7 @@ class Project extends Model
         'status' => ProjectStatus::class,
         'budget' => 'decimal:2',
         'deadline' => 'date',
+        'experience_level' => ExperienceLevel::class,
     ];
 
 
@@ -99,5 +101,30 @@ class Project extends Model
     public function getRatingAttribute()
     {
         return $this->review ? number_format($this->review->rating, 1) : null;
+    }
+
+    public function scopeFilter($query, $filters)
+    {
+        if (!empty($filters['search'])) {
+            $query->where(function ($q) use ($filters) {
+                $q->where('title', 'like', "%{$filters['search']}%")
+                    ->orWhere('description', 'like', "%{$filters['search']}%");
+            });
+        }
+
+        if (!empty($filters['budget_min']) && !empty($filters['budget_max'])) {
+            $query->whereBetween('budget', [$filters['budget_min'], $filters['budget_max']]);
+        }
+
+        if (!empty($filters['experience_level'])) {
+            $query->where('experience_level', $filters['experience_level']);
+        }
+
+        if (!empty($filters['skills'])) {
+            $skills = explode(',', $filters['skills']);
+            $query->whereHas('skills', fn($q) => $q->whereIn('skills.id', $skills));
+        }
+
+        return $query;
     }
 }

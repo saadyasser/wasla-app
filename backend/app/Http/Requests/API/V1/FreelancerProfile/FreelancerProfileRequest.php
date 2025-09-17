@@ -30,6 +30,8 @@ class FreelancerProfileRequest extends FormRequest
             'website' => 'sometimes|nullable|url|max:255',
             'location' => 'sometimes|nullable|string|max:255',
             'available' => 'sometimes|boolean',
+
+            //skills (many-to-many relationship)
             'skills' => 'sometimes|array',
             'skills.*' => 'exists:skills,id',
             'social_links' => 'sometimes|array',
@@ -38,7 +40,7 @@ class FreelancerProfileRequest extends FormRequest
             'certifications' => 'sometimes|array',
             'certifications.*.file_name' => 'required_with:certifications|string|max:50',
             'certifications.*.file_path' => 'file|max:5120',
-            // إضافة تعليم
+
             'educations' => 'sometimes|array',
             'educations.*.university' => 'required_with:educations|string|max:255',
             'educations.*.degree' => 'required_with:educations|string|max:255',

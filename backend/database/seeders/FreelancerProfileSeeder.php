@@ -40,7 +40,7 @@ class FreelancerProfileSeeder extends Seeder
                 $freelancerUser1 = User::create([
                     'name' => 'Test Freelancer 1',
                     'email' => 'freelancer1@example.com',
-                    'password' =>'12345678',
+                    'password' => '12345678',
                     'role' => UserRole::Freelancer->value,
                 ]);
 
@@ -121,7 +121,7 @@ class FreelancerProfileSeeder extends Seeder
                 $freelancerUser2 = User::create([
                     'name' => 'Test Freelancer 2',
                     'email' => 'freelancer2@example.com',
-                    'password' =>'12345678',
+                    'password' => '12345678',
                     'role' => UserRole::Freelancer->value,
                 ]);
 
@@ -210,6 +210,10 @@ class FreelancerProfileSeeder extends Seeder
                     [
                         'certification_name' => 'Laravel Certification',
                         'certification_url' => 'https://certification.com',
+                        'issuer' => 'منصة BEEB',
+                        'date_obtained' => '2024-05-10',
+                        'expiry_date' => '2026-05-10',
+                        'description' => 'شهادة معتمدة في بناء تطبيقات Laravel.'
                     ],
                 ]);
 
@@ -246,6 +250,10 @@ class FreelancerProfileSeeder extends Seeder
                     [
                         'certification_name' => 'Flutter Certification',
                         'certification_url' => 'https://fluttercert.com',
+                        'issuer' => 'Google',
+                        'date_obtained' => '2023-11-20',
+                        'expiry_date' => '2025-11-20',
+                        'description' => 'شهادة معتمدة في تطوير تطبيقات Flutter.'
                     ],
                 ]);
 
