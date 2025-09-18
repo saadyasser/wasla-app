@@ -2,24 +2,11 @@ import ProfileCard from "@/components/profile-card";
 import { auth } from "../../../auth";
 import type { Session } from "next-auth";
 import { AllSection2 } from "@/components/FreelancerProfile/Section2/AllSection2";
+import { FreelancerProfile } from "@/types/profile";
 
 type SessionWithToken = Session & { accessToken?: string };
 
-interface FreelancerProfile {
-    user?: { id?: number; name?: string; email?: string; created_at?: string };
-    title?: string;
-    bio?: string;
-    hourly_rate?: number;
-    phone_number?: string;
-    website?: string;
-    location?: string;
-    available?: boolean;
-    is_complete?: boolean;
-    total_earnings?: number;
-    completed_projects_count?: number;
-    reviews_count?: number;
-    average_rating?: number;
-}
+
 
 const ProfilePage = async () => { 
     const session = await auth();
@@ -44,7 +31,7 @@ const ProfilePage = async () => {
     } catch {
     }
 
-    console.log(profile, 'profile')
+    console.log(profile, 'profilelllll')
 
 
     const name = profile?.user?.name ?? "";
@@ -84,7 +71,7 @@ const ProfilePage = async () => {
                 responseRate={responseRate}
                 responseTime={responseTime}
             />
-            <AllSection2 />
+            <AllSection2 profile={profile}/>
         </div>
     )
 }

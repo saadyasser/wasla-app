@@ -80,7 +80,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
           <p className="mt-3 text-[#364153] text-sm text-center md:text-left">{description}</p>
 
           {/* Contact */}
-          <div className="flex justify-center md:justify-start gap-3 mt-4 text-xs text-gray-600">
+          <div className="flex flex-col items-center md:items-start md:flex-row justify-center md:justify-start gap-3 mt-4 text-xs text-gray-600">
             <div className="flex items-center gap-1">
               <Mail className="w-[14px] h-[14px]" /> {email}
             </div>
