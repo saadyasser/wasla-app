@@ -9,7 +9,6 @@ import { WorkDetails } from '@/components/FindWork/WorkDetails';
 export default function Home() {
   return(
     <Grid bgcolor={'white'} height={'100%'}>
-      <Header />
       <Section2 />
       <Section3 />
       <Section4 />

@@ -24,6 +24,7 @@ interface FreelancerProfile {
 const ProfilePage = async () => { 
     const session = await auth();
 
+
     const accessToken = (session as SessionWithToken | null)?.accessToken;
 
     let profile: FreelancerProfile | null = null;
@@ -42,6 +43,9 @@ const ProfilePage = async () => {
         }
     } catch {
     }
+
+    console.log(profile, 'profile')
+
 
     const name = profile?.user?.name ?? "";
     const title = profile?.title ?? "";
