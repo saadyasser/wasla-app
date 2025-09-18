@@ -8,44 +8,37 @@ import { GridLegacy as Grid } from "@mui/material";
 import { Title } from "./Title";
 import Input from '@/components/Input';
 import { FreelancerProfile } from '@/types/profile';
+import { updateFreelancerProfile } from '@/actions/upateFreelanceProfile';
 
 // Validation schema
 const SettingsSchema = Yup.object({
   name: Yup.string()
-    .required('Full Name is required')
     .min(2, 'Full Name must be at least 2 characters'),
-  professionalTitle: Yup.string()
-    .required('Professional Title is required'),
+  title: Yup.string()
+    ,
   location: Yup.string()
-    .required('Location is required'),
+    ,
   email: Yup.string()
     .email('Invalid email address')
-    .required('Email is required'),
-  phoneNumber: Yup.string()
-    .required('Phone Number is required')
-    .matches(/^\+?[\d\s-()]+$/, 'Invalid phone number format'),
-  website: Yup.string()
-    .url('Invalid website URL')
-    .required('Website is required'),
-  hourlyRate: Yup.string()
-    .required('Hourly Rate is required'),
-  availability: Yup.string()
-    .required('Availability is required'),
+   ,
+
+  hourly_rate: Yup.string()
+    ,
+    available: Yup.string()
+   ,
   bio: Yup.string()
-    .required('Bio is required')
+    
     .min(50, 'Bio must be at least 50 characters')
     .max(500, 'Bio must not exceed 500 characters')
 });
 
-type FormValues = {
-  fullName: string;
-  professionalTitle: string;
+export type FormValues = {
+  name: string;
+  title: string;
   location: string;
   email: string;
-  phoneNumber: string;
-  website: string;
-  hourlyRate: string;
-  availability: string;
+  hourly_rate: string;
+  available: string;
   bio: string;
 };
 
@@ -58,7 +51,7 @@ const fields = [
     gridSize: 6 
   },
   { 
-    name: 'professionalTitle' as keyof FormValues, 
+    name: 'title' as keyof FormValues, 
     label: "Professional Title", 
     type: 'text',
     gridSize: 6 
@@ -107,32 +100,33 @@ const fields = [
   }
 ];
 
-export const Settings = ({profile}: {profile:FreelancerProfile}) => {
+export const Settings = ({profile, token}: {profile:FreelancerProfile, token?: string}) => {
+
   const initialValues: FormValues = {
-    fullName: profile.user.name,
-    professionalTitle: profile.title,
+    name: profile.user.name,
+    title: profile.title,
     location: profile.location,
     email: profile.user.email,
-    phoneNumber: profile.phone_number,
-    website: profile.website,
-    hourlyRate: profile.hourly_rate ,
-    availability: profile.available ? "Available" : "Not Available",
+    hourly_rate: profile.hourly_rate ,
+    available: profile.available ? "Available" : "Not Available",
     bio: profile.bio
   };
 
-  const handleSubmit = (
+  const handleSubmit = async (
     values: FormValues,
     { setSubmitting }: FormikHelpers<FormValues>
   ) => {
-    console.log('Settings updated:', values);
-    // Add your settings update logic here
-    // updateSettingsHandler(values);
-    
-    // Simulate API call
-    setTimeout(() => {
-      setSubmitting(false);
-      alert('Settings saved successfully!'); // Replace with proper notification
-    }, 1000);
+    const response = await fetch("http://127.0.0.1:6565/api/v1/freelancer/profile", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Add Bearer token
+        },
+        body: JSON.stringify(values), // Convert form data to JSON
+      });
+    await updateFreelancerProfile(values, token)
+    setSubmitting(false);
+   
   };
 
   return (

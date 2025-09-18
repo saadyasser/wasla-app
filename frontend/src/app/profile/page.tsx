@@ -31,7 +31,6 @@ const ProfilePage = async () => {
     } catch {
     }
 
-    console.log(profile, 'profilelllll')
 
 
     const name = profile?.user?.name ?? "";
@@ -71,7 +70,7 @@ const ProfilePage = async () => {
                 responseRate={responseRate}
                 responseTime={responseTime}
             />
-            <AllSection2 profile={profile}/>
+            <AllSection2 profile={profile} token={accessToken}/>
         </div>
     )
 }

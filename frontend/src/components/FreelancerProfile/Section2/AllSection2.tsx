@@ -7,7 +7,7 @@ import { Container } from "@mui/material"
 import { useState } from "react"
 import { FreelancerProfile } from "@/types/profile"
 
-export const AllSection2 = ({profile}: {profile: FreelancerProfile | null}) => {
+export const AllSection2 = ({profile, token}: {profile: FreelancerProfile | null, token?: string}) => {
     const [visibleSection, setVisibleSection] = useState<'Projects' | 'Reviews' | 'Settings'>('Projects')
     return(
         <>
@@ -17,7 +17,7 @@ export const AllSection2 = ({profile}: {profile: FreelancerProfile | null}) => {
                     {visibleSection !== 'Reviews' ?
                         <Container sx={{boxShadow: 2, borderRadius: 5, pt: 3, pb: 3, mb: 4}}>
                             {visibleSection === 'Projects' && profile && <Projects projects={profile.projects}/>}
-                            {visibleSection === 'Settings' && profile && <Settings profile={profile}/>}
+                            {visibleSection === 'Settings' && profile && <Settings profile={profile} token={token}/>}
                         </Container> : <Reviews />
                     }
                 </>
