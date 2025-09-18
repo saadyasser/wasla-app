@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\ProjectStatus;
+use App\Enums\ExperienceLevel;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -22,6 +23,9 @@ return new class extends Migration
             $table->date('deadline');
             $table->timestamp('completed_at')->nullable();
             $table->enum('status', array_column(ProjectStatus::cases(), 'value'))->default(ProjectStatus::Open->value);
+
+            $table->enum('experience_level', array_column(ExperienceLevel::cases(), 'value'))->default(ExperienceLevel::Entry->value);
+
             $table->timestamps();
         });
     }
