@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\API\V1;
 
+use App\Models\Project;
 use App\Enums\ProjectStatus;
 use Illuminate\Http\Request;
+use App\Http\Traits\ApiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Freelancer\ProjectResource;
-use App\Http\Traits\ApiResponse;
-use App\Models\Project;
 
 class ProjectController extends Controller
 {
@@ -27,4 +27,8 @@ class ProjectController extends Controller
             200
         );
     }
+
+
+
+
 }
