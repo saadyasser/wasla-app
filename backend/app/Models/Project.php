@@ -6,10 +6,12 @@ use App\Enums\ProjectStatus;
 use App\Enums\ExperienceLevel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Project extends Model
 {
 
+    use HasFactory;
     protected $fillable = [
         'client_profile_id',
         'title',
@@ -50,9 +52,9 @@ class Project extends Model
         return $this->belongsTo(ClientProfile::class, 'client_profile_id');
     }
 
-    public function applications()
+    public function proposals()
     {
-        return $this->hasMany(Application::class);
+        return $this->hasMany(Proposal::class);
     }
 
     public function review()
