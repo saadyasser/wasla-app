@@ -23,7 +23,7 @@ class ProjectResource extends JsonResource
             'rating' => $this->rating,
             'experience_level' => $this->experience_level,
             'created_at_human' => $this->created_at->diffForHumans(),
-            'proposals_count' => $this->applications->count(),
+            'proposals_count' => $this->applications?->count(),
 
             'review_comment' => optional($this->review()->latest()->first())->comment,
 
