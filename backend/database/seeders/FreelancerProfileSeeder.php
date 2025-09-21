@@ -159,13 +159,13 @@ class FreelancerProfileSeeder extends Seeder
                     'description' => 'Another mobile project',
                     'budget' => 1200,
                     'deadline' => now()->addDays(25),
-                    'status' => ProjectStatus::InProgress->value,
+                    'status' => ProjectStatus::Open->value,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
 
                 $project3->update(['freelancer_profile_id' => $freelancer2->id]);
-                $project4->update(['freelancer_profile_id' => $freelancer2->id]);
+                // $project4->update(['freelancer_profile_id' => $freelancer2->id]);
                 // إنشاء تقييمات لفريلانسر 2
                 Review::insert([
                     [
@@ -177,15 +177,15 @@ class FreelancerProfileSeeder extends Seeder
                         'created_at' => now(),
                         'updated_at' => now(),
                     ],
-                    [
-                        'freelancer_profile_id' => $freelancer2->id,
-                        'project_id' => $project4->id,
-                        'client_profile_id' => $clientProfile->id,
-                        'rating' => 4.8,
-                        'comment' => 'Very good!',
-                        'created_at' => now(),
-                        'updated_at' => now(),
-                    ],
+                    // [
+                    //     'freelancer_profile_id' => $freelancer2->id,
+                    //     'project_id' => $project4->id,
+                    //     'client_profile_id' => $clientProfile->id,
+                    //     'rating' => 4.8,
+                    //     'comment' => 'Very good!',
+                    //     'created_at' => now(),
+                    //     'updated_at' => now(),
+                    // ],
                 ]);
 
                 // إنشاء portfolios لفريلانسر 1

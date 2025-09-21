@@ -65,10 +65,11 @@ class FreelancerProfileController extends Controller
             $request->only(['title', 'bio', 'hourly_rate', 'location', 'available'])
         );
 
-        return $this->successResponse([
-            'message' => 'Freelancer profile updated successfully',
-            'freelancer' => new FreelancerBasicInfoResource($freelancer)
-        ]);
+        return $this->successResponse(
+            new FreelancerBasicInfoResource($freelancer),
+            'Freelancer profile updated successfully',
+            200
+        );
     }
 
     public function destroy()

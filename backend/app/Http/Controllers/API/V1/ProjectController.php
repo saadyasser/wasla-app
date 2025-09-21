@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers\API\V1;
 
+use App\Models\Project;
 use App\Enums\ProjectStatus;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Resources\Freelancer\ProjectResource;
 use App\Http\Traits\ApiResponse;
-use App\Models\Project;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\ProjectCollection;
 
 class ProjectController extends Controller
 {
     use ApiResponse;
     public function index(Request $request)
     {
+
         $projects = Project::with(['skills', 'clientProfile.user'])
             ->where('status', ProjectStatus::Open->value)
             ->filter($request->all())
@@ -21,8 +22,10 @@ class ProjectController extends Controller
             ->paginate(10);
 
 
+              $projectsCollection = new ProjectCollection($projects);
+
         return $this->successResponse(
-            ProjectResource::collection($projects),
+            $projectsCollection,
             'Projects retrieved successfully',
             200
         );
