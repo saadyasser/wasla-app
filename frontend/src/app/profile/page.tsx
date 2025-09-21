@@ -4,7 +4,7 @@ import type { Session } from "next-auth";
 import { AllSection2 } from "@/components/FreelancerProfile/Section2/AllSection2";
 import { FreelancerProfile } from "@/types/profile";
 
-type SessionWithToken = Session & { accessToken?: string };
+export type SessionWithToken = Session & { accessToken?: string };
 
 
 
