@@ -19,7 +19,9 @@ class Project extends Model
         'budget',
         'deadline',
         'status',
-        'freelancer_profile_id'
+        'freelancer_profile_id',
+        'experience_level',
+        'completed_at'
     ];
 
     protected $casts = [

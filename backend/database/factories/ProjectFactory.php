@@ -24,7 +24,7 @@ class ProjectFactory extends Factory
     {
         return [
             'client_profile_id' => ClientProfile::factory(),
-            'freelancer_profile_id' => null, // أو FreelancerProfile::factory() حسب حاجتك
+            'freelancer_profile_id' => null,
             'title' => $this->faker->sentence(3),
             'description' => $this->faker->paragraph(),
             'budget' => $this->faker->randomFloat(2, 100, 10000),
