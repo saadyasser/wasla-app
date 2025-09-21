@@ -2,7 +2,7 @@ import { Button as MUIButton } from "@mui/material"
 import { ReactNode } from "react"
 
 interface ButtonProps {
-    color?: "primary" | "secondary" | "success" | "error" | "info" | "warning",
+    color?: "primary" | "secondary" | "success" | "error" | "info" | "warning" | "inherit",
     fontColor?: string,
     bgColor?: string,
     size?: "large" | "medium" | "small",

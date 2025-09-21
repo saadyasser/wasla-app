@@ -4,7 +4,6 @@ import Header from '@/components/header';
 import { Section2 } from '@/components/LandingPage/section2';
 import { Section3 } from '@/components/LandingPage/section3';
 import { Section4 } from '@/components/LandingPage/section4';
-import { WorkDetails } from '@/components/FindWork/WorkDetails';
 
 export default function Home() {
   return(
