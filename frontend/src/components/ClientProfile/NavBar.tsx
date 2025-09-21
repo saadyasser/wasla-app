@@ -1,0 +1,44 @@
+'use client'
+import { Tabs, Tab, Container } from "@mui/material";
+import React, { useState } from "react";
+import { Dashboard } from "./Dashboard/Dashboard";
+
+export const NavBar = () => {
+    const [value, setValue] = useState<number>(0)
+    const handleChange = (event: React.SyntheticEvent, newValue: number) =>{ 
+        setValue(newValue)
+    }
+    const labels = ['Dashboard', 'My Jobs']
+    return(
+        <>
+            <Container sx={{bgcolor: 'white'}} maxWidth={false}>
+                <Container>
+                    <Tabs
+                        value={value}
+                        onChange={handleChange}
+                        TabIndicatorProps={{
+                            style: {backgroundColor: '#006633'}
+                        }}
+                    >
+                        {labels.map(label =>
+                            <Tab
+                                key={`tab-${label}`}
+                                label={label}
+                                sx={{
+                                    textTransform: "none" ,
+                                    "&.Mui-selected": {
+                                        color: '#006633'
+                                    }
+                                }}
+                            />
+                        )}
+                    </Tabs>
+                </Container>
+            </Container>
+            <Container>
+                {value === 0 && <Dashboard />}
+                {/* {value === 1 && <Dashboard />} */}
+            </Container>
+        </>
+    )
+}

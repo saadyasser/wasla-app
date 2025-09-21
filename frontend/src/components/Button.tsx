@@ -16,6 +16,7 @@ interface ButtonProps {
     endIcon?: ReactNode,
     onClick?: ()=> void,
     padding?: string
+    textTransform?: string
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -32,7 +33,7 @@ export const Button: React.FC<ButtonProps> = ({
     startIcon,
     endIcon,
     onClick,
-    padding
+    padding,
 })=>{
     return(
         <MUIButton 

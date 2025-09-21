@@ -4,11 +4,12 @@ namespace App\Models;
 
 use App\Enums\ProjectStatus;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\{HasMany, BelongsTo, BelongsToMany};
 
 class FreelancerProfile extends Model
 {
-
+use HasFactory;
 
     protected $fillable = [
         'user_id',
@@ -106,9 +107,14 @@ class FreelancerProfile extends Model
     public function getProfileImageUrlAttribute(): string
     {
         if ($this->profile_image_path) {
-       return asset('storage/freelancerProfiles/' . $this->profile_image_path);
-
+            return asset('storage/freelancerProfiles/' . $this->profile_image_path);
         }
         return 'https://ui-avatars.com/api/?name=' . urlencode($this->user->name) . '&background=random&color=fff';
+    }
+
+
+    public function proposals()
+    {
+        return $this->hasMany(Proposal::class);
     }
 }

@@ -9,7 +9,8 @@ use App\Http\Controllers\API\V1\Freelancer\{
     PortfolioController,
     SocialLinkController,
     CertificationController,
-    FreelancerProfileController
+    FreelancerProfileController,
+    ProposalController
 };
 
 // Authenticated routes
@@ -49,7 +50,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 
-
+    Route::post('/projects/{project}/apply', [ProposalController::class, 'store']);
 
 
     // Logout route
