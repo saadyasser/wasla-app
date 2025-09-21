@@ -70,16 +70,7 @@ class User extends Authenticatable
         return $this->hasMany(Project::class, 'client_id');
     }
 
-    public function applications()
-    {
-        return $this->hasMany(Application::class, 'freelancer_id');
-    }
 
-
-    public function skills()
-    {
-        return $this->belongsToMany(Skill::class, 'user_skills', 'user_id', 'skill_id');
-    }
 
     protected function password(): Attribute
     {
