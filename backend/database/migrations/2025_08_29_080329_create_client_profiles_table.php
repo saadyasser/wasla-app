@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('company_name')->nullable();
             $table->text('company_info')->nullable();
             $table->string('website')->nullable();
+            $table->string('location')->nullable();
             $table->timestamps();
         });
     }
