@@ -1,6 +1,6 @@
 import { WorkDetails } from "@/components/FindWork/WorkDetails";
 import { auth } from "../../../auth";
-import { SessionWithToken } from "../profile/page";
+import { SessionWithToken } from "../freelancer-profile/page";
 import SearchBar from "@/components/FindWork/search-bar";
 
 interface Client {

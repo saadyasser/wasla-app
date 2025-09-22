@@ -108,18 +108,6 @@ const ProfileCard: FC<ProfileCardProps> = ({
         </div>
       </div>
         </div>
-
-        {/* Actions */}
-        <div className="absolute top-[28px] right-[28px] flex gap-2">
-          <button className="flex gap-2 items-center px-3 py-2 text-sm border rounded-lg border-[#E5E7EB] hover:bg-gray-50">
-            <EditIcon />
-            <span className="hidden md:block  text-sm text-[#1A1A1A]">Edit Profile</span>
-          </button>
-          <button className="flex gap-2 items-center px-3 py-2 text-sm bg-[#006633] text-white rounded-lg hover:bg-green-700">
-            <ContactIcon />
-            <span className="hidden md:block text-sm text-white">Contact</span>
-          </button>
-        </div>
       </div>
 
     </div>

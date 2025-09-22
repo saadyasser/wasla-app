@@ -101,7 +101,7 @@ const fields = [
 ];
 
 export const Settings = ({profile, token}: {profile:FreelancerProfile, token?: string}) => {
-
+console.log(profile, 'profileeeeeeeeeeee')
   const initialValues: FormValues = {
     name: profile.user.name,
     title: profile.title,
