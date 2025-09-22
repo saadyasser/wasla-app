@@ -29,8 +29,10 @@ class ProjectResource extends JsonResource
 
 
             // client info
-            'client' => ClientProfileResource::make($this->whenLoaded('clientProfile')->user),
-
+            'client' => [
+                'id' => $this->clientProfile->id,
+                'company_name' => $this->clientProfile->company_name,
+            ],
             // skills names
             'skills' =>  $this->skills->pluck('name'),
 

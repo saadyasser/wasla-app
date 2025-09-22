@@ -25,11 +25,6 @@ class FreelancerProfileController extends Controller
     public function myProfile()
     {
         $user = Auth::user();
-
-        if (!$user || !$user->freelancerProfile) {
-            return $this->errorResponse("User is not a freelancer or profile not found.", 404);
-        }
-
         $freelancerProfile = $this->service->loadProfileWithRelations($user);
 
         return $this->successResponse(

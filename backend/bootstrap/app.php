@@ -18,6 +18,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->api(append: [
             Cors::class,
         ]);
+
+        $middleware->alias([
+            'check.client' => \App\Http\Middleware\CheckClient::class,
+            'check.freelancer'=> \App\Http\Middleware\CheckFreelancer::class
+        ]);
     })
-    ->withExceptions(function (Exceptions $exceptions): void {
-    })->create();
+    ->withExceptions(function (Exceptions $exceptions): void {})->create();

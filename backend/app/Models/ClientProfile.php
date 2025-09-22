@@ -12,7 +12,8 @@ class ClientProfile extends Model
         'user_id',
         'company_name',
         'website',
-        'company_info'
+        'company_info',
+        'location'
     ];
 
     public function user()
@@ -23,5 +24,10 @@ class ClientProfile extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
     }
 }
