@@ -2,6 +2,7 @@
 import { Tabs, Tab, Container } from "@mui/material";
 import React, { useState } from "react";
 import { Dashboard } from "./Dashboard/Dashboard";
+import { MyJobs } from "./MyJobs/MyJobs";
 
 export const NavBar = () => {
     const [value, setValue] = useState<number>(0)
@@ -20,10 +21,11 @@ export const NavBar = () => {
                             style: {backgroundColor: '#006633'}
                         }}
                     >
-                        {labels.map(label =>
+                        {labels.map((label, index) =>
                             <Tab
                                 key={`tab-${label}`}
                                 label={label}
+                                value={index}
                                 sx={{
                                     textTransform: "none" ,
                                     "&.Mui-selected": {
@@ -37,7 +39,7 @@ export const NavBar = () => {
             </Container>
             <Container>
                 {value === 0 && <Dashboard />}
-                {/* {value === 1 && <Dashboard />} */}
+                {value === 1 && <MyJobs />}
             </Container>
         </>
     )

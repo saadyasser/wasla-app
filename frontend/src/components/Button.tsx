@@ -33,7 +33,7 @@ export const Button: React.FC<ButtonProps> = ({
     startIcon,
     endIcon,
     onClick,
-    padding,
+    padding = '.2rem 1rem',
 })=>{
     return(
         <MUIButton 
@@ -53,7 +53,8 @@ export const Button: React.FC<ButtonProps> = ({
                 p: padding,
                 "&:hover": {
                     opacity: 0.9
-                }
+                },
+                textTransform: 'none'
             }}
         >
             {content}
