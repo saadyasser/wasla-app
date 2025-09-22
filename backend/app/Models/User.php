@@ -64,14 +64,6 @@ class User extends Authenticatable
         return $this->hasOne(ClientProfile::class);
     }
 
-
-    public function projects()
-    {
-        return $this->hasMany(Project::class, 'client_id');
-    }
-
-
-
     protected function password(): Attribute
     {
         return Attribute::make(
