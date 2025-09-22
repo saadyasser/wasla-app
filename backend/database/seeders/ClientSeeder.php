@@ -2,10 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Enums\UserRole;
+use App\Models\User;
+use Illuminate\Support\Str;
+use App\Models\ClientProfile;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 class ClientSeeder extends Seeder
 {
@@ -86,26 +89,22 @@ class ClientSeeder extends Seeder
 
         foreach ($clientsData as $client) {
 
-            $userId = DB::table('users')->insertGetId([
+            $user = User::create([
                 'name' => $client['user_name'],
                 'email' => strtolower(str_replace(' ', '', $client['user_name'])) . '@example.com',
                 'email_verified_at' => now(),
-                'password' =>'password123',
+                'password' => 'password123',  // يتم تشفيرها تلقائيًا بواسطة mutator
                 'remember_token' => Str::random(10),
-                'role' => 'Client',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'role' => UserRole::Client->value,
             ]);
 
 
-            DB::table('client_profiles')->insert([
-                'user_id' => $userId,
+            ClientProfile::create([
+                'user_id' => $user->id,
                 'company_name' => $client['company_name'],
                 'company_info' => $client['company_info'],
                 'website' => $client['website'],
                 'location' => $client['location'],
-                'created_at' => now(),
-                'updated_at' => now(),
             ]);
         }
     }
