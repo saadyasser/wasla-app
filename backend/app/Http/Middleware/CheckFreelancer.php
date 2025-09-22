@@ -15,7 +15,6 @@ class CheckFreelancer
     {
        $user = Auth::user();
 
-        // تحقق إذا المستخدم مسجل ومدى توفر معلومة أنه عميل (يمكن تغيير الشرط حسب سير العمل الخاص بك)
         if (!$user || !$user->freelancerProfile) {
             return $this->errorResponse('User is not a freelancer or freelancer profile not found.', 403); // 403 Forbidden لأن المستخدم غير مخول الدخول كعميل
         }

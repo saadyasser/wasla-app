@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Services\ClientProfileService;
-use App\Http\Resources\ClientProfileResource;
-use App\Http\Resources\ClientBasicInfoResource;
+use App\Http\Resources\Client\ClientProfileResource;
+use App\Http\Resources\Client\ClientBasicInfoResource;
 use App\Http\Requests\API\V1\ClientProfile\UpdateClientProfileRequest;
 
 class ClientProfileController extends Controller
