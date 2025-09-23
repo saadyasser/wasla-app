@@ -4,9 +4,8 @@ import { SessionWithToken } from "../freelancer-profile/page";
 import SearchBar from "@/components/FindWork/search-bar";
 
 interface Client {
-  name: string;
-  location: string | null;
-  rating: number | null;
+  id: number;
+  company_name: string | null;
 }
 
 interface Project {
@@ -54,7 +53,7 @@ interface FindWorkPageProps {
 }
 
 
-async function fetchProjects(searchQuery?: string, token?: string): Promise<Project[]> {
+export async function fetchProjects(searchQuery?: string, token?: string): Promise<Project[]> {
   try {
     const url = new URL('http://127.0.0.1:6565/api/v1/projects');
     if (searchQuery) {
@@ -105,7 +104,7 @@ export default async function FindWorkPage({ searchParams }: FindWorkPageProps) 
   // Fetch projects data
   const projects = await fetchProjects(searchQuery, accessToken);
 
- 
+ console.log(projects, 'all projects')
 
   return (
     <div className="mt-[30px] 2xl:mt-[50px]">

@@ -13,11 +13,11 @@ import {Button as MUIButton} from "@mui/material";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface Client {
-  name: string;
-  location: string | null;
-  rating: number | null;
+  id: number;
+  company_name: string | null;
 }
 
 interface Project {
@@ -45,6 +45,7 @@ interface WorkDetailsProps {
 const basicInfo = ["created_at_human", "proposals_count", "client"] as const;
 
 export const WorkDetails = ({ projects }: WorkDetailsProps): ReactNode => {
+    const router = useRouter();
     const [favoriteStates, setFavoriteStates] = useState<{[key: number]: boolean}>({});
 
     const toggleFavorite = (projectId: number) => {
@@ -100,9 +101,9 @@ export const WorkDetails = ({ projects }: WorkDetailsProps): ReactNode => {
                                     content = `${project.proposals_count || 0} proposals`;
                                 } else if (info === 'client') {
                                     content = (
-                                        <Box display={'flex'}>
+                                        <Box display={'flex'} gap={.5} alignItems={'center'}>
                                             <RoomOutlinedIcon fontSize="small" sx={{width:'1rem', height: '18px'}}/>
-                                            {project.client.location || 'Location not specified'}
+                                            {project.client.company_name || 'Unknown client'}
                                         </Box>
                                     );
                                 }
@@ -156,22 +157,22 @@ export const WorkDetails = ({ projects }: WorkDetailsProps): ReactNode => {
                                     lineHeight={.6}
                                     padding={2}
                                 >
-                                    {project.client.name[0]}
+                                    {(project.client.company_name?.[0] || '?')}
                                 </Typography>
                                 <Grid display={'grid'}>
                                     <Typography>
-                                        <b>{project.client.name} </b> 
+                                        <b>{project.client.company_name || 'Unknown client'} </b> 
                                         <Chip 
                                             label={<b>Client</b>}
                                             sx={{bgcolor: '#DCFCE7', color: '#016630'}}
                                         />
                                     </Typography>
                                     <Box display={'flex'} gap={1} sx={{lineHeight: 1}} mt={{xs: 0, sm: -1}}>
-                                        {project.client.rating && (
+                                        {project.rating && (
                                             <>
                                                 <Box display={'flex'} gap={.4}>
                                                     <StarIcon fontSize="small" sx={{color: '#FCC800', width:'1rem', height: '1rem'}}/>
-                                                    <Typography fontSize={'small'} color="#4A5565">{project.client.rating}</Typography>
+                                                    <Typography fontSize={'small'} color="#4A5565">{project.rating}</Typography>
                                                 </Box>
                                                 <Typography fontSize={'small'} color="#4A5565">•</Typography>
                                             </>
@@ -187,7 +188,7 @@ export const WorkDetails = ({ projects }: WorkDetailsProps): ReactNode => {
                                     justifyContent={'end'} 
                                     mt={{xs: 1, sm: 0}}
                                 >
-                                    <Button content="Apply Now" width="8rem" bgColor="#006633" fontColor="white"/>
+                                    <Button onClick={() => { router.push(`/home/${project.id}`) }} content="Apply Now" width="8rem" bgColor="#006633" fontColor="white"/>
                                 </Box>
                         </Box>
                     </CardContent>

@@ -1,3 +1,4 @@
+"use client"
 import { Job } from "@/types/Job"
 import { ReactNode } from "react"
 import { Header } from "./Header"
