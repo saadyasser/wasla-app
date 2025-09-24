@@ -1,5 +1,4 @@
-import { Typography, Grid, Box } from "@mui/material"
-import { Button } from "../Button"
+import { Typography, Grid, Box, Button } from "@mui/material"
 import { Add } from "@mui/icons-material"
 
 type props = {
@@ -17,12 +16,12 @@ export const Header = ({title, subTitle, buttonContent}: props) => {
             </Grid>
             <Grid alignSelf={'end'} mt={{xs: 1, md: 0}}>
                 <Button 
-                    content={buttonContent} 
                     startIcon={<Add />}
-                    bgColor="#006633"
-                    fontColor="white"
-                    padding=".5rem 1rem"
-                />
+                    variant="contained"
+                    sx={{bgcolor: '#006633', textTransform: 'none'}}
+                >
+                    {buttonContent}
+                </Button>
             </Grid>
         </Box>
     )
