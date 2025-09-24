@@ -1,6 +1,6 @@
 'use client'
-import { ReactNode, useState } from "react";
-import { Box, Card, Container, Chip } from "@mui/material";
+import { ReactNode, useEffect, useRef, useState } from "react";
+import { Box, Card, Container, Chip, CircularProgress } from "@mui/material";
 import { CardContent } from "@mui/material";
 import {Typography} from "@mui/material";
 import RoomOutlinedIcon from '@mui/icons-material/RoomOutlined';
@@ -47,6 +47,9 @@ const basicInfo = ["created_at_human", "proposals_count", "client"] as const;
 export const WorkDetails = ({ projects }: WorkDetailsProps): ReactNode => {
     const router = useRouter();
     const [favoriteStates, setFavoriteStates] = useState<{[key: number]: boolean}>({});
+    const [visibleCount, setVisibleCount] = useState<number>(4);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const sentinelRef = useRef<HTMLDivElement | null>(null);
 
     const toggleFavorite = (projectId: number) => {
         setFavoriteStates(prev => ({
@@ -62,6 +65,34 @@ export const WorkDetails = ({ projects }: WorkDetailsProps): ReactNode => {
     const formatBudget = (budget: number) => {
         return `${budget.toLocaleString()}`;
     };
+
+    // IntersectionObserver to load more items on scroll
+    useEffect(() => {
+        if (!sentinelRef.current) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            const entry = entries[0];
+            if (entry.isIntersecting && !isLoading && visibleCount < projects.length) {
+                setIsLoading(true);
+                // Simulate async fetch; here we already have data, so just delay for UX
+                const timer = setTimeout(() => {
+                    setVisibleCount(prev => Math.min(prev + 4, projects.length));
+                    setIsLoading(false);
+                }, 400);
+                return () => clearTimeout(timer);
+            }
+        }, {
+            root: null,
+            rootMargin: '0px',
+            threshold: 1.0,
+        });
+
+        observer.observe(sentinelRef.current);
+
+        return () => {
+            observer.disconnect();
+        };
+    }, [isLoading, visibleCount, projects.length]);
 
     if (projects.length === 0) {
         return (
@@ -80,7 +111,7 @@ export const WorkDetails = ({ projects }: WorkDetailsProps): ReactNode => {
 
     return (
         <Container>
-            {projects.map((project) => 
+            {projects.slice(0, visibleCount).map((project) => 
                 <Card key={`project-${project.id}`} sx={{p: 1, mb: 3, boxShadow: 2, borderRadius: 3}}>
                     <CardContent>
                         <Box display={'flex'} justifyContent={'space-between'}>
@@ -193,6 +224,12 @@ export const WorkDetails = ({ projects }: WorkDetailsProps): ReactNode => {
                         </Box>
                     </CardContent>
                 </Card>
+            )}
+            {/* Sentinel for infinite scroll */}
+            {visibleCount < projects.length && (
+                <Box ref={sentinelRef} display="flex" justifyContent="center" alignItems="center" py={2}>
+                    {isLoading && <CircularProgress size={28} sx={{ color: '#006633' }} />}
+                </Box>
             )}
         </Container>
     )
