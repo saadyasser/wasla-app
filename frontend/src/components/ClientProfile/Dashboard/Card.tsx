@@ -5,15 +5,10 @@ import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
 import { ClientDashboardCard, Title } from "@/types/ClientDashboardCard";
-
-type additionalInfoType = {
-    Icon: React.ElementType,
-    bgColor: string,
-    iconColor: string
-}
+import { DashboardAdditionlaInfo } from "@/types/DashboardAdditionlaInfo";
 
 export const Card = ({title, number}: ClientDashboardCard) => {
-    let additionalInfo: additionalInfoType
+    let additionalInfo: DashboardAdditionlaInfo
     switch(title){
         case Title.ActiveJobs:
             additionalInfo = {

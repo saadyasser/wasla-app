@@ -20,7 +20,6 @@ Route::post('/login', [AuthenticationController::class, 'login']);
 Route::post('/register', [AuthenticationController::class, 'register']);
 Route::get('/skills', [SkillController::class, 'index']);
 Route::get('/projects', [ProjectController::class, 'index']);
-Route::get('/projects/{project}', [ProjectController::class, 'show']);
 
 // Freelancer Routes
 Route::middleware(['auth:sanctum', 'check.freelancer'])->group(function () {
@@ -39,14 +38,21 @@ Route::middleware(['auth:sanctum', 'check.freelancer'])->group(function () {
     //Portfolio
     Route::apiResource('/freelancer/portfolios', PortfolioController::class)->only(['index', 'store', 'update', 'destroy']);
 
+    //Proposal Freelancer
     Route::post('/projects/{project}/apply', [ProposalController::class, 'store']);
-
+    Route::put('/freelancer/proposals/{proposal}', [ProposalController::class, 'update']);
+    Route::delete('/freelancer/proposals/{proposal}', [ProposalController::class, 'destroy']);
 });
 
 // Client Routes
 Route::middleware(['auth:sanctum', 'check.client'])->group(function () {
     Route::get('/client/profile', [ClientProfileController::class, 'show']);
     Route::put('/client/profile', [ClientProfileController::class, 'update']);
+
+    Route::get('/projects/{project}', [ProjectController::class, 'show']);
+    Route::post('/projects', [ProjectController::class, 'store']);
+    Route::put('/projects/{project}', [ProjectController::class, 'update']);
+    Route::delete('/projects/{project}', [ProjectController::class, 'destroy']);
 });
 
 // Logout

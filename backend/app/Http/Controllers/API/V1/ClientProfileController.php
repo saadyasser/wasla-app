@@ -44,8 +44,8 @@ class ClientProfileController extends Controller
         try {
             $user = Auth::user();
 
-            $userData = $request->only(['name', 'email']); // بيانات جدول users
-            $clientData = $request->except(['name', 'email']); // بيانات جدول client_profiles
+            $userData = $request->only(['name', 'email']);
+            $clientData = $request->except(['name', 'email']);
 
             $profile = $this->service->updateProfile($user, $userData, $clientData);
 
