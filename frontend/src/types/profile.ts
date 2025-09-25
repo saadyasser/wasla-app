@@ -52,7 +52,7 @@ export interface FreelancerProfile {
     rating: string; // if it's always numeric, change to number
     review_comment: string;
     client: Client; // replace with actual client structure
-    skills: Skill[];
+    skills: string[];
   }
   
   export interface Client {

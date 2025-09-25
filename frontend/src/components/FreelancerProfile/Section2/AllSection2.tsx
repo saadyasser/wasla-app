@@ -19,7 +19,7 @@ export const AllSection2 = ({profile, token}: {profile: FreelancerProfile | null
                         <Container sx={{boxShadow: 2, borderRadius: 5, pt: 3, pb: 3, mb: 4}}>
                             {visibleSection === 'Projects' && profile &&   (    profile.projects.length > 0 ? <Projects projects={profile.projects}/> : <p className="text-center text-gray-500 text-sm">No projects found</p>)}
                             {visibleSection === 'Settings' && profile && <Settings profile={profile} token={token}/>}
-                        </Container> : <Reviews />
+                        </Container> : <Reviews projects={profile?.projects ?? []} />
                     }
                 </>
             }

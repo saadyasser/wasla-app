@@ -3,6 +3,7 @@ import { ClientMyJobsCard, Title } from "@/types/ClientMyJobsCard"
 import { GridLegacy as Grid } from "@mui/material"
 import { Card } from "./Card"
 import { MiddleTabs } from "../MiddleTabs"
+import { ClientProfileProject } from "@/app/client-profile/page"
 
 //temporary numbers
 const cards: ClientMyJobsCard[] = [
@@ -12,7 +13,7 @@ const cards: ClientMyJobsCard[] = [
     {title: Title.TotalSpent, number: 12300}
 ]
 
-export const MyJobs = () => {
+export const MyJobs = ({data}: {data: ClientProfileProject}) => {
     return(
         <>
             <Header

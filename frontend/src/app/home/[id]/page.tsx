@@ -37,5 +37,5 @@ export default async function JobApplication(): Promise<ReactNode> {
         requirenments: [],
     };
 
-    return <ApplyForJob job={job}/>;
+    return <ApplyForJob job={job} accessToken={accessToken}/>;
 }

@@ -15,7 +15,8 @@ export const UserLogout = ({ name, email }: UserLogoutProps) => {
   const router = useRouter();
 
   const handleSignOut = async () => {
-    await signOut({ redirect: false });
+    await signOut({ redirect: true, redirectTo: "/auth" });
+    setIsOpen(false);
     router.push("/auth");
   };
 

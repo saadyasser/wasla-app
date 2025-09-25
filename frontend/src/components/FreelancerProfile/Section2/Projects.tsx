@@ -7,6 +7,7 @@ import { Project } from "@/types/profile";
 import { Button } from "@/components/Button"
 import StarIcon from '@mui/icons-material/Star';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import Link from "next/link"
 
 function formatMinutes(minutes: number) {
     const minutesInDay = 24 * 60;         // 1440
@@ -29,6 +30,7 @@ function formatMinutes(minutes: number) {
 
 
 export const Projects = ({projects} : {projects: Project[]}) => {
+  console.log(projects, 'allllllllprojects')
     return(
         <>
             <Title Icon={WorkOutlineOutlinedIcon} text="Recent Projects"/>
@@ -69,8 +71,8 @@ export const Projects = ({projects} : {projects: Project[]}) => {
       </div>
     </div>
                                 <Box display={'flex'} gap={1}>
-                                    {project.skills.map(skill =>
-                                        <Chip key={`${skill.id}-techonology`} label={skill.name}/>
+                                    {project.skills.map((skill,index) =>
+                                        <Chip key={`${index}-techonology`} label={skill}/>
                                     )}
                                 </Box>
                                 <Box display={'flex'} gap={1}>
@@ -82,14 +84,12 @@ export const Projects = ({projects} : {projects: Project[]}) => {
                                     {Number(project.rating).toFixed(1)}
                                 </Box>
                             </Box>
-                            <Box><Button variant="text" fontColor="#006633" content='Link' startIcon={<LanguageIcon/>}/></Box>
+                            <Link href={`/home/${project.id}`}><Button variant="text" fontColor="#006633" content='Browse' startIcon={<LanguageIcon/>}/></Link>
                         </Box>
                     </CardContent>
                 </Card>
             )}
-            <Box justifySelf={'center'}>
-                <Button color="success" fontColor="#006633" variant="outlined" content="View All Projects" endIcon={<ArrowRightAltIcon />}/>
-            </Box>
+
         </>
     )
 }
