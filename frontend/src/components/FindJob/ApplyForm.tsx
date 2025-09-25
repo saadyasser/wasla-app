@@ -27,6 +27,9 @@ const validationSchema = Yup.object({
     .test("fileFormat", ("CV format"), (value: any) => 
         value && ["image/png", "image/jpg", "application/pdf"].includes(value.type)
     )
+    .test("fileSize", "File size must not exceed 10 MB", (value: any) =>
+      value && value.size <= 10 * 1024 * 1024
+    )
 })
 
 export const ApplyForm = ({accessToken}: {accessToken?: string}): ReactNode => {
