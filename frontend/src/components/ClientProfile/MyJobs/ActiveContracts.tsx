@@ -2,6 +2,7 @@ import { ActiveContract } from "./ActiveContract"
 import { status } from "@/types/RecentJob"
 import { ActiveContractType } from "@/types/ActiveContract"
 import { Grid } from "@mui/material"
+import { ClientProfileProject } from "@/app/client-profile/page"
 
 //temporary
 const contracts: ActiveContractType[] = [
@@ -22,11 +23,11 @@ const contracts: ActiveContractType[] = [
     }
 ]
 
-export const ActiveContracts = () => {
+export const ActiveContracts = ( {projects}: {projects: ClientProfileProject[]}) => {
     return(
         <Grid display={'grid'} gap={4}>
-            {contracts.map((contract, index) =>
-                <ActiveContract key={`contract-${index}`} contract={contract}/>
+            {projects.filter(p => p.status === 'open' || p.status === 'in-progress')?.map((project, index) =>
+                <ActiveContract key={`contract-${index}`} contract={project}/>
             )}
         </Grid>
     )

@@ -12,7 +12,7 @@ import { removeItem } from "@/lib/storage"
 import { FeedbackAlert } from "../FeedbackAlert"
 import dayjs from "dayjs"
 
-type props = {step: number, updateStep: Dispatch<SetStateAction<number>>}
+type props = {step: number, token: string, updateStep: Dispatch<SetStateAction<number>>}
 
 const initialValues: PostNewJob = {
     "title": '',
@@ -32,7 +32,10 @@ const validationSchema = Yup.object({
     "skills": Yup.array().min(1, 'Select at least one option')
 })
 
-export const StepCard = ({step, updateStep}: props) => {
+export const StepCard = ({step, token, updateStep}: props) => {
+    const [alertMessage, setAlertMessage] = useState<string>('Post added successfully')
+const [alertSeverity, setAlertSeverity] = useState<'error' | 'warning' | 'info' | 'success'>('success')
+const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
     const router =useRouter()
     const [isFormSubmitted, setIsFormSubmitted] = useState<boolean>(false)
     return(
@@ -44,8 +47,7 @@ export const StepCard = ({step, updateStep}: props) => {
                     validationSchema={validationSchema} 
                     onSubmit={(values)=> console.log(values)}
                 >
-                    {({setTouched, validateForm}) => {
-                        const toggleNext = async() => {
+{({setTouched, validateForm, values, resetForm}) => {                        const toggleNext = async() => {
                             const errors = await validateForm()
                             if(step === 1){
                                 console.log(step)
@@ -66,6 +68,48 @@ export const StepCard = ({step, updateStep}: props) => {
                                 if(errors.budget || errors.deadline || errors.experience_level) return
                             }
                             if(step === 3){ //post new job was clicked
+                                try {
+                                    setIsSubmitting(true)
+                                    const payload = {
+                                      title: values.title,
+                                      description: values.description,
+                                      budget: Number(values.budget),
+                                      deadline: values.deadline ? dayjs(values.deadline).format('YYYY-MM-DD') : null,
+                                      experience_level: values.experience_level.toLowerCase(),
+                                      skills: values.skills
+                                    }
+                                
+                                    const res = await fetch('http://127.0.0.1:6565/api/v1/projects', {
+                                      method: 'POST',
+                                      headers: {
+                                        'Content-Type': 'application/json',
+                                        // If your API needs auth, uncomment and provide a token:
+                                        Authorization: `Bearer ${token}`,
+                                      },
+                                      body: JSON.stringify(payload)
+                                    })
+                                
+                                    if (!res.ok) {
+                                      const msg = await res.text().catch(() => '')
+                                      throw new Error(msg || `Failed to post job (${res.status})`)
+                                    }
+                                
+                                    setAlertSeverity('success')
+                                    setAlertMessage('Job posted successfully')
+                                    setIsFormSubmitted(true)
+                                
+                                    // cleanup and redirect
+                                    removeItem('skills')
+                                    removeItem('numOfChar')
+                                    resetForm()
+                                    setTimeout(() => router.push('/client-profile'), 1000)
+                                  } catch (e: any) {
+                                    setAlertSeverity('error')
+                                    setAlertMessage(e?.message || 'Failed to post job')
+                                    setIsFormSubmitted(true)
+                                  } finally {
+                                    setIsSubmitting(false)
+                                  }
                                 removeItem('skills')
                                 removeItem('numOfChar')
                                 setIsFormSubmitted(true)
@@ -89,10 +133,11 @@ export const StepCard = ({step, updateStep}: props) => {
                                             Previous Step
                                         </Button>
                                     }
-                                    <Button
-                                        sx={{textTransform: 'none', bgcolor: '#006633'}}
-                                        variant="contained"
-                                        onClick={toggleNext}
+                                 <Button
+                                    sx={{ textTransform: 'none', bgcolor: '#006633' }}
+                                    variant="contained"
+                                    onClick={toggleNext}
+                                    disabled={isSubmitting}
                                     >
                                         {step === 3 ? 'Post Job' : 'Next Step'}
                                     </Button>

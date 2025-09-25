@@ -3,6 +3,7 @@ import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { Button } from '@/components/Button';
 import { RecentJob, status } from '@/types/RecentJob';
 import { JobCard } from './JobCard';
+import { ClientProfileProject } from '@/app/client-profile/page';
 
 //temp data
 const data: RecentJob[] = [
@@ -29,7 +30,7 @@ const data: RecentJob[] = [
   }
 ]
 
-export const RecentJobs = () => {
+export const RecentJobs = ({projects}: {projects: ClientProfileProject[]}) => {
     return(
         <Card sx={{borderRadius: '14px', p: 2}}>
             <CardContent>
@@ -38,7 +39,7 @@ export const RecentJobs = () => {
                     <Button content='View All' color='success' endIcon={<ArrowRightAltIcon />}/>
                 </Box>
                 <Grid display={'grid'} gap={3}>
-                  {data.map((job, index) =>
+                  {projects.map((job, index) =>
                       <JobCard key={`recent-job-${index}`} job={job} />
                   )}
                 </Grid>

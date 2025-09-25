@@ -38,7 +38,7 @@ export const Dashboard = ({data}: {data: ClientProfileData})=> {
                     </Grid>
                 )}
             </Grid>
-            <RecentJobs />
+            <RecentJobs projects={data.projects}/>
         </>
     )
 }

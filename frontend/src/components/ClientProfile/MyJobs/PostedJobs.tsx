@@ -1,6 +1,7 @@
 import { PostedJob } from "./PostedJob"
 import { Grid } from "@mui/material"
 import { PostedJobType, Status } from "@/types/PostedJob"
+import { ClientProfileProject } from "@/app/client-profile/page"
 
 const jobs: PostedJobType[] = [
     {
@@ -32,10 +33,10 @@ const jobs: PostedJobType[] = [
     }
 ]
 
-export const PostedJobs = () => {
+export const PostedJobs = ({projects}: {projects: ClientProfileProject[]}) => {
     return(
         <Grid display={'grid'} gap={4}>
-            {jobs.map((job, index) =>
+            {projects.map((job, index) =>
                 <PostedJob key={`posted-job-${index}`} job={job}/>
             )}
         </Grid>

@@ -8,8 +8,9 @@ import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { PostedJobButton } from "./PostedJobButton";
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
+import { ClientProfileProject } from "@/app/client-profile/page";
 
-type props = {job: PostedJobType}
+type props = {job: ClientProfileProject}
 
 export const PostedJob = ({job}: props) => {
     return(
@@ -26,11 +27,11 @@ export const PostedJob = ({job}: props) => {
                     </Box>
                     <Box display={'flex'} alignItems={'center'} gap={.5} sx={{color:'#4A5565'}}>
                         <CalendarTodayIcon fontSize="small"/>
-                        <Typography fontSize={'small'}>Posted {job.postedDate}</Typography>
+                        <Typography fontSize={'small'}>Posted {job.created_at_human}</Typography>
                     </Box>
                     <Box display={'flex'} alignItems={'center'} gap={.5} sx={{color:'#4A5565'}}>
                         <PersonOutlineIcon fontSize="small"/>
-                        <Typography fontSize={'small'}>{job.applicationsReceived} applications</Typography>
+                        <Typography fontSize={'small'}>{job.proposals_count} applications</Typography>
                     </Box>
                     {
                         job.status === Status.Closed && 
@@ -54,15 +55,14 @@ export const PostedJob = ({job}: props) => {
                     <Typography mt={{xs:0, md: 3}} sx={{color: '#4A5565'}} fontSize={'small'}>
                         {job.status === Status.Open ?
                             <>
-                                {job.applicationsReceived} responses received
+                                {job.proposals_count} responses received
                             </> :
                             <>
-                                Completed {job.completedDate}
+                                Completed 
                             </>
                         }
                     </Typography>
                     <Box display={'flex'} gap={1} flexWrap={'wrap'}>
-                        <PostedJobButton content="View proposals" Icon={VisibilityIcon}/>
                         {
                             job.status === Status.Open && 
                             <PostedJobButton content="Edit Job" Icon={DescriptionOutlinedIcon}/>
