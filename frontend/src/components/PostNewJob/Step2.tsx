@@ -1,4 +1,5 @@
 
+'use client'
 import { Chip, GridLegacy as Grid, Typography } from "@mui/material"
 import { useEffect, useState } from "react"
 import { useFormikContext } from "formik"

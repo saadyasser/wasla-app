@@ -2,10 +2,11 @@ import { Button } from "@mui/material"
 
 type props = {
     Icon: React.ElementType,
-    content: string
+    content: string,
+    handleClick: () => void
 }
 
-export const PostedJobButton = ({Icon, content}: props) => {
+export const PostedJobButton = ({Icon, content, handleClick}: props) => {
     return(
         <Button 
             sx={{
@@ -19,6 +20,7 @@ export const PostedJobButton = ({Icon, content}: props) => {
             size="small"
             variant="contained" 
             startIcon={<Icon />}
+            onClick={handleClick}
         >
             {content}
         </Button>
