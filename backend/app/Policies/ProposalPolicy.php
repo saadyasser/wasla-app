@@ -50,7 +50,7 @@ class ProposalPolicy
      */
     public function delete(User $user, Proposal $proposal): bool
     {
-        return $user->freelancerProfile?->id === $proposal->freelancer_profile_id;
+        return $user->freelancerProfile->id === $proposal->freelancer_profile_id;
     }
 
     /**
@@ -67,5 +67,11 @@ class ProposalPolicy
     public function forceDelete(User $user, Proposal $proposal): bool
     {
         return false;
+    }
+
+    public function accept(User $user, Proposal $proposal)
+    {
+
+        return $user->clientProfile->id === $proposal->project->client_profile_id;
     }
 }

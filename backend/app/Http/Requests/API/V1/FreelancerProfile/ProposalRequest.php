@@ -24,9 +24,8 @@ class ProposalRequest extends FormRequest
         return [
             'cover_letter' => 'required|string',
             'budget'       => 'required|numeric|min:1',
-            'timeline'     => 'required|string',
-            'attachment'   => 'nullable|file|mimes:pdf,doc,docx|max:10240',
-
+            'estimated_duration'     => 'required|string',
+            'attachment'   => 'nullable|file|mimes:pdf,doc,docx|max:10240'
         ];
     }
 }

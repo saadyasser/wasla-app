@@ -31,6 +31,9 @@ class Project extends Model
         'experience_level' => ExperienceLevel::class,
     ];
 
+    protected $attributes = [
+        'status' => ProjectStatus::Open->value,
+    ];
 
     protected $dates = ['deadline', 'completed_at'];
 

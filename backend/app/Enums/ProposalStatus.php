@@ -2,8 +2,7 @@
 
 namespace App\Enums;
 
-
-enum ApplicationStatus: string
+enum ProposalStatus: string
 {
     case Pending = 'pending';
     case Accepted = 'accepted';

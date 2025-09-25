@@ -4,7 +4,7 @@ namespace App\Http\Resources\Freelancer;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProjectResource extends JsonResource
+class FreelancerProjectResource extends JsonResource
 {
     public function toArray($request): array
     {
@@ -21,20 +21,16 @@ class ProjectResource extends JsonResource
             'rating' => $this->rating,
             'experience_level' => $this->experience_level,
             'created_at_human' => $this->created_at->diffForHumans(),
-            'proposals_count' => $this->proposals?->count(),
 
-             'skills' => $this->skills->pluck('name'),
 
            'review_comment' => optional($this->review)->comment,
+
             'client' => [
                 'id' => $this->clientProfile->id,
                 'company_name' => $this->clientProfile->company_name,
             ],
 
-
-            'proposals' =>ProposalResource::collection($this->whenLoaded('proposals')),
-
-
+            'skills' => $this->skills->pluck('name'),
         ];
     }
 }
