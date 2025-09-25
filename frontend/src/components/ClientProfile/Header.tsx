@@ -16,6 +16,7 @@ export const Header = ({title, subTitle, buttonContent}: props) => {
             </Grid>
             <Grid alignSelf={'end'} mt={{xs: 1, md: 0}}>
                 <Button 
+                    href="/post-new-job"
                     startIcon={<Add />}
                     variant="contained"
                     sx={{bgcolor: '#006633', textTransform: 'none'}}

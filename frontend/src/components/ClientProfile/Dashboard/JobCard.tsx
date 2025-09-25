@@ -1,9 +1,10 @@
 import { Box, Card, CardContent, Typography } from "@mui/material"
 import { RecentJob } from "@/types/RecentJob"
 import { JobStatus } from "../Status"
+import { ClientProfileProject } from "@/app/client-profile/page"
 
 type props = {
-    job: RecentJob
+    job: ClientProfileProject
 }
 
 export const JobCard = ({job}: props) => {
@@ -14,10 +15,10 @@ export const JobCard = ({job}: props) => {
                     <Typography fontWeight={'bold'} sx={{color: '#101828'}}>{job.title}</Typography>
                     <JobStatus jobStatus={job.status} />
                 </Box>
-                <Typography sx={{color: '#4A5565'}}>{job.category}</Typography>
+                <Typography sx={{color: '#4A5565'}}>{job.experience_level}</Typography>
                 <Box display={'flex'} justifyContent={'space-between'}>
-                    <Typography sx={{color: '#6A7282'}} fontSize={'small'}>${job.price.toLocaleString()}</Typography>
-                    <Typography sx={{color: '#6A7282'}} fontSize={'small'}>{job.proposals} proposals</Typography>
+                    <Typography sx={{color: '#6A7282'}} fontSize={'small'}>${job.budget.toLocaleString()}</Typography>
+                    <Typography sx={{color: '#6A7282'}} fontSize={'small'}>{job.proposals_count} proposals</Typography>
                 </Box>
             </CardContent>
         </Card>

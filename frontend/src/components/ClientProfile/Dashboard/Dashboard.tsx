@@ -3,16 +3,27 @@ import { RecentJobs } from "./RecentJobs"
 import { GridLegacy as Grid } from "@mui/material"
 import { ClientDashboardCard, Title } from "@/types/ClientDashboardCard"
 import { Card } from "./Card"
+import { ClientProfileData, ClientProfileProject } from "@/app/client-profile/page"
 
-//temporary numbers
-const cards: ClientDashboardCard[] = [
-    {title: Title.ActiveJobs, number: 12},
-    {title: Title.CompletedProjects, number: 45},
-    {title: Title.FreelancersHired, number: 38},
-    {title: Title.TotalSpent, number: 24500}
-]
+export const Dashboard = ({data}: {data: ClientProfileData})=> {
+    // derive metrics from data.projects
+    const projects: ClientProfileProject[] = data?.projects || []
 
-export const Dashboard = ()=> {
+    const activeJobs = projects.filter(p => p.status === 'open' || p.status === 'in_progress').length
+    const completedProjects = projects.filter(p => p.status === 'completed').length
+    // freelancers hired assumed as jobs where a freelancer has been hired: in_progress or completed
+    const freelancersHired = projects.filter(p => p.status === 'in_progress' || p.status === 'completed').length
+    // total spent assumed as sum of budgets for completed jobs
+    const totalSpent = projects
+        .filter(p => p.status === 'completed')
+        .reduce((sum, p) => sum + (Number(p.budget) || 0), 0)
+
+    const cards: ClientDashboardCard[] = [
+        { title: Title.ActiveJobs, number: activeJobs },
+        { title: Title.CompletedProjects, number: completedProjects },
+        { title: Title.FreelancersHired, number: freelancersHired },
+        { title: Title.TotalSpent, number: totalSpent },
+    ]
     return(
         <>
             <Header
@@ -27,7 +38,7 @@ export const Dashboard = ()=> {
                     </Grid>
                 )}
             </Grid>
-            <RecentJobs />
+            <RecentJobs projects={data.projects}/>
         </>
     )
 }

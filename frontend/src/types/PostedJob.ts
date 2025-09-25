@@ -1,6 +1,6 @@
 export enum Status {
-  Open = "open",
-  Closed = "closed"
+    Open = "open",
+    Closed = "completed"
 }
 
 export interface PostedJobType {

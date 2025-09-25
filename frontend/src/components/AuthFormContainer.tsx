@@ -1,8 +1,8 @@
 'use client';
 import { useState } from 'react';
 import { SignHeader } from '@/components/SignHeader';
-import RegisterForm from '@/components/RegisterForm';
 import LoginForm from '@/components/LoginForm';
+import RegisterForm from './RegisterForm';
 
 export const AuthFormContainer = () => {
     const [visibleForm, setVisibleForm] =  useState<'registration' | 'login'>('registration');

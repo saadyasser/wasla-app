@@ -1,3 +1,4 @@
+"use client"
 import { Job } from "@/types/Job"
 import { ReactNode } from "react"
 import { Header } from "./Header"
@@ -11,9 +12,9 @@ import { Button } from "../Button"
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { useRouter } from "next/navigation"
 
-type props = {job: Job}
+type props = {job: Job, accessToken?: string}
 
-export const ApplyForJob = ({job}: props): ReactNode => {
+export const ApplyForJob = ({job, accessToken}: props): ReactNode => {
     const router = useRouter()
     return(
         <Container>
@@ -44,7 +45,7 @@ export const ApplyForJob = ({job}: props): ReactNode => {
                     )}
                 </Grid>
             </Card>
-            <ApplyForm />
+            <ApplyForm accessToken={accessToken}/>
         </Container>
     )
 }

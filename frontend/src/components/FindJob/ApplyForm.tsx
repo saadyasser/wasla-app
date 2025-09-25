@@ -29,7 +29,7 @@ const validationSchema = Yup.object({
     )
 })
 
-export const ApplyForm = (): ReactNode => {
+export const ApplyForm = ({accessToken}: {accessToken?: string}): ReactNode => {
     const [showSuccessSubmession, setShowSuccessSubmession] = useState<boolean>(false)
     const fileInputRef = useRef<HTMLInputElement>(null)
     const [fileName, setFileName] = useState<string>("")
@@ -41,10 +41,38 @@ export const ApplyForm = (): ReactNode => {
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
-                onSubmit={(values, { setSubmitting }) => {
-                    // handle submit
-                    setShowSuccessSubmession(true)
-                    setSubmitting(false)
+                onSubmit={async (values, { setSubmitting }) => {
+                    setSubmitting(true)
+                    try {
+                        const formData = new FormData()
+                        formData.append('cover_letter', values.coverLetter)
+                        formData.append('budget', String(values.budget))
+                        formData.append('timeline', values.timeline)
+                        if (values.attachment) {
+                            formData.append('attachment', values.attachment as File)
+                        }
+
+                        const res = await fetch('http://127.0.0.1:6565/api/v1/projects/16/apply', {
+                            method: 'POST',
+                            mode: 'cors',
+                            headers: {
+                                'Authorization': `Bearer ${accessToken}`,
+                            },
+                            body: formData,
+                        })
+
+                        if (!res.ok) {
+                            const text = await res.text().catch(() => '')
+                            throw new Error(text || `Request failed with status ${res.status}`)
+                        }
+
+                        setShowSuccessSubmession(true)
+                    } catch (error) {
+                        console.error('Failed to submit application:', error)
+                        alert('Failed to submit application. Please try again.')
+                    } finally {
+                        setSubmitting(false)
+                    }
                 }}
             >
                 {({ errors, touched, isSubmitting, setFieldValue, handleChange, handleBlur }) => (

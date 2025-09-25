@@ -3,8 +3,9 @@ import { Tabs, Tab, Container } from "@mui/material";
 import React, { useState } from "react";
 import { Dashboard } from "./Dashboard/Dashboard";
 import { MyJobs } from "./MyJobs/MyJobs";
+import { ClientProfileData } from "@/app/client-profile/page";
 
-export const NavBar = () => {
+export const NavBar = ({data}: {data: ClientProfileData}) => {
     const [value, setValue] = useState<number>(0)
     const handleChange = (event: React.SyntheticEvent, newValue: number) =>{ 
         setValue(newValue)
@@ -38,8 +39,8 @@ export const NavBar = () => {
                 </Container>
             </Container>
             <Container>
-                {value === 0 && <Dashboard />}
-                {value === 1 && <MyJobs />}
+                {value === 0 && data && <Dashboard data={data} />}
+                {value === 1 && data && <MyJobs data={data} />}
             </Container>
         </>
     )

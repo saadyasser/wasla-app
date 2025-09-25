@@ -4,8 +4,9 @@ import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import { ActiveContracts } from "./MyJobs/ActiveContracts";
 import { PostedJobs } from "./MyJobs/PostedJobs";
+import { ClientProfileProject } from "@/app/client-profile/page";
 
-export const MiddleTabs = () => {
+export const MiddleTabs = ({projects}: {projects: ClientProfileProject[]}) => {
     const [value, setValue] = useState<number>(0)
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue)
@@ -49,8 +50,8 @@ export const MiddleTabs = () => {
                     </Tabs>
                 </Grid>
             </Container>
-            {value === 0 && <ActiveContracts />}
-            {value === 1 && <PostedJobs />}
+            {value === 0 && <ActiveContracts projects={projects} />}
+            {value === 1 && <PostedJobs projects={projects} />}
         </>
     )
 }

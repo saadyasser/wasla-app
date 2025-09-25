@@ -1,8 +1,9 @@
 "use server"
 import { signIn } from "../../auth"
 
-export const loginHandler = async (formData: { email: string; password: string }) => {
-    await signIn("credentials", {...formData, redirectTo: "/"})
+export const loginHandler = async (formData: { email: string; password: string, userType: string }) => {
+
+    const res = await signIn("credentials", {...formData, redirectTo: formData.userType === "freelancer" ?  "/freelancer-profile" : "/client-profile"})
   }
 
 export type LoginPayload = {
