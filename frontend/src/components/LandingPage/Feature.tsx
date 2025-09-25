@@ -17,7 +17,7 @@ export const Feature = (
         props 
     ) => {
     return(
-        <Grid item xs={4} p={5} container display={'grid'} gap={1}>
+        <Grid item xs={sectionNumber ===1 ? 6 : 12} sm={3} p={5} display={'grid'} gap={1} justifyContent={'center'} textAlign={'center'}>
             <Typography 
                 color="#006633" 
                 bgcolor={'#0066331A'}

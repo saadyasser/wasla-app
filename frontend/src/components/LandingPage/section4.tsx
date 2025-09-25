@@ -2,6 +2,7 @@ import ShieldOutlinedIcon from '@mui/icons-material/ShieldOutlined';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import QueryBuilderOutlinedIcon from '@mui/icons-material/QueryBuilderOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import {GridLegacy as Grid} from "@mui/material"
 
 import { FeatureType } from '@/types/Feature';
 import { Feature } from '@/components/LandingPage/Feature';
@@ -33,36 +34,34 @@ const section: FeatureType[] = [
 
 export const Section4 = () => {
   return(
-    <Container 
-        maxWidth={false} 
-        sx={{
-          textAlign: 'center', 
-          backgroundColor: '#F9FAFB',
-          p: 7,
-          //this will be removed soon
-          mt: 2
-        }}>
-            <SectionHeader 
-                title = "Why Choose Palestine Work?"
-                subTitle = "We provide a secure, efficient platform that benefits everyone involved"
-            />
-            <Container 
-                sx={{
-                    display: 'flex', 
-                    justifyContent: 'space-around', 
-                    textAlign:'center',
-                    mt: 1
-                }}>
-                {section.map(sec =>
-                    <Feature
-                        key={`section4-${sec.subTitle}`}
-                        icon={sec.icon}
-                        title={sec.title}
-                        subTitle={sec.subTitle}
-                        sectionNumber={2}
-                    />
-                )}
-            </Container>
-      </Container>
+    <Container maxWidth={false} sx={{backgroundColor: '#F9FAFB'}}>
+      <Container
+          sx={{
+            textAlign: 'center',
+            p: 7,
+            //this will be removed soon
+            mt: 2,
+          }}>
+              <SectionHeader
+                  title = "Why Choose Palestine Work?"
+                  subTitle = "We provide a secure, efficient platform that benefits everyone involved"
+              />
+              <Grid container spacing={2}
+                display={'flex'}
+                mt={2}
+                alignItems={'start'}
+              >
+                  {section.map(sec =>
+                      <Feature
+                          key={`section4-${sec.subTitle}`}
+                          icon={sec.icon}
+                          title={sec.title}
+                          subTitle={sec.subTitle}
+                          sectionNumber={2}
+                      />
+                  )}
+              </Grid>
+        </Container>
+    </Container>
   )
 }

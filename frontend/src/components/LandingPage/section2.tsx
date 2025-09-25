@@ -2,6 +2,7 @@ import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
 import TurnSlightRightOutlinedIcon from '@mui/icons-material/TurnSlightRightOutlined';
 import LanguageIcon from '@mui/icons-material/Language';
+import {GridLegacy as Grid} from "@mui/material"
 
 import { FeatureType } from '@/types/Feature';
 import { Feature } from '@/components/LandingPage/Feature';
@@ -33,30 +34,25 @@ const section: FeatureType[] = [
 
 export const Section2 = () => {
     return(
-        <Container 
-        maxWidth={false} 
-        sx={{
-          backgroundColor: '#F9FAFB', 
-          p: 2
-        }}>
-        <Container
-          sx={{
-            display: 'flex', 
-            justifyContent: 'space-around', 
-            textAlign:'center',
-            mt: 1
-          }}
-        >
-          {section.map(sec =>
-            <Feature
-              key={`section2-${sec.subTitle}`}
-              icon={sec.icon}
-              title={sec.title}
-              subTitle={sec.subTitle}
-              sectionNumber={1}
-            />
-          )}
+        <Container maxWidth={false} sx={{backgroundColor: '#F9FAFB'}}>
+          <Container
+          sx={{ p: 2 }}
+          >
+          <Grid container spacing={2}
+            display={'flex'}
+            mt={1}
+          >
+            {section.map(sec =>
+              <Feature
+                key={`section2-${sec.subTitle}`}
+                icon={sec.icon}
+                title={sec.title}
+                subTitle={sec.subTitle}
+                sectionNumber={1}
+              />
+            )}
+          </Grid>
+                </Container>
         </Container>
-      </Container>
     )
 }

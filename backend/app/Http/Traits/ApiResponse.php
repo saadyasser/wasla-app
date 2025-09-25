@@ -15,8 +15,10 @@ trait ApiResponse
      * @param int $code
      * @return JsonResponse
      */
+
     protected function successResponse($data, string $message = 'Success', int $code = Response::HTTP_OK): JsonResponse
     {
+
         return response()->json([
             'code' => $code,
             'message' => $message,

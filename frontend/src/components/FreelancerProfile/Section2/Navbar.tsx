@@ -1,9 +1,16 @@
 import { Container } from "@mui/material"
 import { Button } from "@mui/material"
+import { Dispatch, SetStateAction } from "react"
 
-const headers = ["Projects", "Reviews", "Settings"]
+type section = 'Projects' | 'Reviews' | 'Settings'
+const headers: section[] = ["Projects", "Reviews", "Settings"]
 
-export const NavBar = () => {
+type props = {
+    visibleSection: section,
+    setVisibleSection: Dispatch<SetStateAction<section>>
+}
+
+export const NavBar = ({visibleSection ,setVisibleSection}: props) => {
     return(
         <Container 
             sx={{
@@ -19,11 +26,11 @@ export const NavBar = () => {
                 {headers.map(header=> 
                     <Button 
                         key={`freelancerProfile-${header}`}
-                        color="inherit"
                         size="small"
-                        sx={{textTransform: 'none'}}
+                        sx={{textTransform: 'none', color: visibleSection === header ? '#006633' : 'black'}}
+                        onClick={()=> setVisibleSection(header)}
                     >
-                        {header[0].toUpperCase() + header.slice(1).toLowerCase()}
+                        <b>{header[0].toUpperCase() + header.slice(1).toLowerCase()}</b>
                     </Button>
                 )}
         </Container>

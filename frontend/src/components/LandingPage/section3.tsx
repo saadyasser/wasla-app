@@ -42,14 +42,14 @@ const section: FeatureType[] = [
 
 export const Section3 = () => {
     return(
-        <Container sx={{textAlign: 'center', p: 1}}>
+        <Container sx={{textAlign: 'center', p: 3}}>
             <SectionHeader 
                 title="Browse Popular Categories"
                 subTitle="Find skilled professionals across all major industries and skills"
             />
             <Grid container spacing={3} mt={1} sx={{textAlign: 'start'}}>
                 {section.map((sec, index) =>
-                    <Grid item xs={4} key={`category-${index}`}>
+                    <Grid item xs={12} sm={6} md={4} key={`category-${index}`}>
                         <Card
                             sx={{
                                 border: '1.4px solid #E5E7EB',

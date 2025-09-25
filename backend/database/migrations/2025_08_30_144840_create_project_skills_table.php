@@ -16,9 +16,6 @@ return new class extends Migration
              $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
             $table->foreignId('skill_id')->constrained('skills')->onDelete('cascade');
 
-
-
-
         });
     }
 
