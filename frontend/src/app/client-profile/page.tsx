@@ -23,7 +23,7 @@ export interface ClientProfileProject {
   skills: string[]
 }
 
-interface ClientProfileData {
+export interface ClientProfileData {
   id: number
   company_name: string | null
   company_info: string | null
@@ -73,11 +73,10 @@ export default async function ClientProfile() {
     console.error(e)
   }
 
-  console.log(data, 'datadatadata')
 
   return (
     <>
-     data && data.data && <NavBar data={data?.data as ClientProfileData} />
+     <NavBar data={data?.data as ClientProfileData} />
     </>
   )
 }
