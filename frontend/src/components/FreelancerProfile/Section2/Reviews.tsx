@@ -1,5 +1,4 @@
-import StarIcon from '@mui/icons-material/Star';
-import { Box, Card, CardContent, Grid, Typography, Chip, Container } from '@mui/material';
+import { Box, Card, CardContent, Grid, Typography, Chip, Container, Rating } from '@mui/material';
 
 //temporary data
 const reviews = [
@@ -31,12 +30,8 @@ export const Reviews = () => {
             <Container sx={{display: 'grid', mb: 5, textAlign: 'center'}}>
                 <Card>
                     <CardContent sx={{p: 2}}>
-                        <Typography sx={{color: '#006633'}} variant='h3'><b>{evaluation}</b></Typography>
-                        <Box display={'flex'} justifySelf={'center'}>
-                            {new Array(evaluation).fill(0).map((x, index) =>
-                                <StarIcon key={`review-star-${index}`} fontSize="medium" sx={{color: '#FCC800'}}/>
-                            )}
-                        </Box>
+                        <Typography sx={{color: '#006633'}} variant='h3'><b>{evaluation.toFixed(1)}</b></Typography>
+                        <Rating value={evaluation} readOnly/>
                         <Typography color='textSecondary'>Based on {reviewsNumber} reviews</Typography>
                     </CardContent>
                 </Card>
@@ -64,11 +59,7 @@ export const Reviews = () => {
                                         <Typography color='textDisabled' fontSize={'small'}>{review.completed.toDateString()}</Typography>
                                     </Grid>
                                 </Box>
-                                <Box display={'flex'}>
-                                    {new Array(review.stars).fill(0).map((x, index) =>
-                                        <StarIcon key={`reviewStar-${index}`} fontSize="small" sx={{color: '#FCC800'}}/>
-                                    )}
-                                </Box>
+                                <Rating value={review.stars} readOnly/>
                             </Box>
                             <Typography color='textSecondary' mb={2}><em>{`"${review.description}"`}</em></Typography>
                             <Box display={'flex'} gap={1} flexWrap={'wrap'}>
