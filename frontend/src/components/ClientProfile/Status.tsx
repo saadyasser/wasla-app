@@ -8,13 +8,13 @@ export const JobStatus = ({jobStatus}: props) => {
         <Chip 
             label={jobStatus}
             sx={{
-                color: jobStatus === status.Active ? '#006633' :
+                color: jobStatus === status.Open ? '#006633' :
                        jobStatus === status.InProgress ? '#155DFC' : 
                        '#00A63E',
-                bgcolor: jobStatus === status.Active ? '#E8F5E8' :
+                bgcolor: jobStatus === status.Open ? '#E8F5E8' :
                          jobStatus === status.InProgress ? '#EFF6FF' : 
                         '#F0FDF4',
-                border: jobStatus === status.Active ? '1px solid #00663333' :
+                border: jobStatus === status.Open ? '1px solid #00663333' :
                          jobStatus === status.InProgress ? '1px solid #BEDBFF' : 
                         '1px solid #B9F8CF',
                 fontWeight: 'bold'

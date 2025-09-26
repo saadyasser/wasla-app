@@ -1,3 +1,4 @@
+'use client'
 import { TextField as TextFieldMUI, Typography, InputAdornment, Box } from "@mui/material"
 import { useState } from "react"
 import { useFormikContext } from "formik"

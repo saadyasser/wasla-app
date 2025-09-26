@@ -1,18 +1,21 @@
 import { Card, CardContent, Typography, Box, Chip } from "@mui/material"
-import { PostedJobType, Status } from "@/types/PostedJob"
+import { Status } from "@/types/PostedJob"
 import { PostStatus } from "./PostStatus"
 import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import { PostedJobButton } from "./PostedJobButton";
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import { ClientProfileProject } from "@/app/client-profile/page";
+import { useState } from "react";
+import { EditFormDialog } from "../EditJob/EditFormDialog";
 
 type props = {job: ClientProfileProject}
 
 export const PostedJob = ({job}: props) => {
+    const [isEditClicked, setIsEditClicked] = useState<boolean>(false)
+
     return(
         <Card sx={{borderRadius: '14.5px', boxShadow: 0, border: '1px solid #E5E7EB80'}}>
             <CardContent sx={{ml: 2, mr: 2}}>
@@ -62,12 +65,12 @@ export const PostedJob = ({job}: props) => {
                             </>
                         }
                     </Typography>
-                    <Box display={'flex'} gap={1} flexWrap={'wrap'}>
-                        {
-                            job.status === Status.Open && 
-                            <PostedJobButton content="Edit Job" Icon={DescriptionOutlinedIcon}/>
-                        }
-                    </Box>
+                    {
+                        job.status === Status.Open && 
+                        <PostedJobButton handleClick={()=> setIsEditClicked(true)} content="Edit Job" Icon={DescriptionOutlinedIcon}/>
+                    }
+                    {/* you need to psass job id */}
+                    <EditFormDialog isEditClicked={isEditClicked} setIsEditClicked={setIsEditClicked}/>
                 </Box>
             </CardContent>
         </Card>

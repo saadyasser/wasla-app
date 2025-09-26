@@ -11,7 +11,7 @@ class ProjectService
 
     public function getAllProjects(array $filters = [])
     {
-        return Project::with(['clientProfile.user', 'skills'])
+        return Project::with(['clientProfile.user', 'skills','proposals'])
             ->where('status', \App\Enums\ProjectStatus::Open->value)
             ->filter($filters)
             ->latest()
@@ -25,7 +25,8 @@ class ProjectService
             'clientProfile.user',
             'freelancerProfile.user',
             'skills',
-            'review'
+            'review',
+            'proposals'
         ]);
     }
 

@@ -3,7 +3,6 @@ import { StepTitle } from "./StepTitle"
 import { Dispatch, SetStateAction, useState } from "react"
 import { useRouter } from "next/navigation"
 import { Formik, Form } from "formik"
-import * as Yup from 'yup'
 import { PostNewJob } from "@/types/PostNewJob"
 import { Step2 } from "./Step2"
 import { Step1 } from "./Step1"
@@ -11,6 +10,7 @@ import { Step3 } from "./Step3"
 import { removeItem } from "@/lib/storage"
 import { FeedbackAlert } from "../FeedbackAlert"
 import dayjs from "dayjs"
+import { jobValidationSchema } from "@/lib/jobValidator"
 
 type props = {step: number, token: string, updateStep: Dispatch<SetStateAction<number>>}
 
@@ -23,14 +23,7 @@ const initialValues: PostNewJob = {
     "skills": []
 }
 
-const validationSchema = Yup.object({
-    "title": Yup.string().required('Enter Job Title'),
-    "description": Yup.string().required('Enter Description').min(500),
-    "budget": Yup.string().required('Enter Budget'),
-    "deadline": Yup.string().required('Enter deadline'),
-    "experience_level": Yup.string().required('Select experience level'),
-    "skills": Yup.array().min(1, 'Select at least one option')
-})
+const validationSchema = jobValidationSchema
 
 export const StepCard = ({step, token, updateStep}: props) => {
     const [alertMessage, setAlertMessage] = useState<string>('Post added successfully')
@@ -140,7 +133,7 @@ const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
                                     disabled={isSubmitting}
                                     >
                                         {step === 3 ? 'Post Job' : 'Next Step'}
-                                    </Button>
+                                </Button>
                                 </Box>
                             </Form>
                         )
