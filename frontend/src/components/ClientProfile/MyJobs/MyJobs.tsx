@@ -40,8 +40,8 @@ export const MyJobs = ({data}: {data: ClientProfileData}) => {
                 buttonContent="Post New Job"
             />
          <Grid container spacing={2} mb={5} mt={2}>
-                       {cards.map(card =>
-                           <Grid key={`${card.title}`} item xs={12} sm={6} md={3}>
+                       {cards.map((card, index) =>
+                           <Grid key={`${index}`} item xs={12} sm={6} md={3}>
                                <Card title={card.title} number={card.number}/>
                            </Grid>
                        )}
