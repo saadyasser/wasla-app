@@ -17,29 +17,28 @@ class ApplyToProjectTest extends TestCase
     /** @test */
     public function test_apply_to_non_existing_project_returns_404()
     {
-
         $user = User::factory()->create();
+        $freelancerProfile = FreelancerProfile::factory()->create(['user_id' => $user->id]);
         Sanctum::actingAs($user);
 
-
-        $response = $this->postJson('/api/v1/projects/99999/apply', [
+        $response = $this->postJson('/api/v1/projects/122/apply', [
             'cover_letter' => 'Test cover letter',
-            'budget'       => 500,
-            'timeline'     => '2 weeks',
+            'budget' => 500,
+            'estimated_duration' => '2 weeks',
         ]);
 
 
         $response->assertStatus(404)
-                 ->assertJson([
-                     'code' => 404,
-                     'message' => 'Project not found',
-                     'data' => null,
-                 ]);
+            ->assertJson([
+                'code' => 404,
+                'message' => 'Project not found',
+                'data' => null,
+            ]);
     }
 
 
 
-      /** @test */
+    /** @test */
     public function test_cannot_apply_twice_to_same_project()
     {
         $user = User::factory()->create();
@@ -56,19 +55,19 @@ class ApplyToProjectTest extends TestCase
         $response = $this->postJson("/api/v1/projects/{$project->id}/apply", [
             'cover_letter' => 'Test',
             'budget' => 100,
-            'timeline' => '1 week',
+            'estimated_duration' => '1 week',
         ]);
 
         $response->assertStatus(409)
-                 ->assertJson([
-                     'code' => 409,
-                     'message' => 'You have already applied to this project.',
-                     'data' => null,
-                 ]);
+            ->assertJson([
+                'code' => 409,
+                'message' => 'You have already applied to this project.',
+                'data' => null,
+            ]);
     }
 
 
-     /** @test */
+    /** @test */
     public function test_successful_proposal_submission_with_attachment()
     {
         Storage::fake('public');
@@ -84,42 +83,41 @@ class ApplyToProjectTest extends TestCase
         $response = $this->postJson("/api/v1/projects/{$project->id}/apply", [
             'cover_letter' => 'Test cover letter',
             'budget' => 500,
-            'timeline' => '2 weeks',
+            'estimated_duration' => '2 weeks',
             'attachment' => $file,
         ]);
 
         $response->assertStatus(201)
-                 ->assertJson([
-                     'message' => 'Proposal submitted successfully',
-                 ]);
+            ->assertJson([
+                'message' => 'Proposal submitted successfully',
+            ]);
 
         $responseData = $response->json('data');
-        $this->assertNotNull($responseData['attachment']);
-
-        Storage::disk('public')->assertExists($responseData['attachment']);
+        $this->assertNotNull($responseData['attachment_url']);
+        $path = str_replace(url('/storage') . '/', '', $responseData['attachment_url']);
+        Storage::disk('public')->assertExists($path);
     }
 
 
-     /** @test */
+    /** @test */
     public function test_cannot_apply_to_project_if_status_not_open()
     {
         $user = User::factory()->create();
         $freelancerProfile = FreelancerProfile::factory()->create(['user_id' => $user->id]);
         Sanctum::actingAs($user);
 
-        $project = Project::factory()->create(["status"=>ProjectStatus::Completed->value]);
+        $project = Project::factory()->create(["status" => ProjectStatus::Completed->value]);
         $response = $this->postJson("/api/v1/projects/{$project->id}/apply", [
             'cover_letter' => 'Test',
             'budget' => 100,
-            'timeline' => '1 week',
+            'estimated_duration' => '1 week',
         ]);
 
         $response->assertStatus(403)
-                 ->assertJson([
-                     'code' => 403,
-                     'message' => 'You can only apply to open projects.',
-                     'data' => null,
-                 ]);
+            ->assertJson([
+                'code' => 403,
+                'message' => 'You can only apply to open projects.',
+                'data' => null,
+            ]);
     }
-
 }
