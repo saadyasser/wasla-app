@@ -39,13 +39,13 @@ export const MyJobs = ({data}: {data: ClientProfileData}) => {
                 subTitle="Track your posted jobs, active contracts, and hired freelancers"
                 buttonContent="Post New Job"
             />
-         <Grid container spacing={2} mb={5} mt={2}>
+         {/* <Grid container spacing={2} mb={5} mt={2}>
                        {cards.map((card, index) =>
                            <Grid key={`${index}`} item xs={12} sm={6} md={3}>
                                <Card title={card.title} number={card.number}/>
                            </Grid>
                        )}
-                   </Grid>
+                   </Grid> */}
             <MiddleTabs projects={data.projects} />
         </>
     )

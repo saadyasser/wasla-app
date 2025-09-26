@@ -20,7 +20,7 @@ export const MiddleTabs = ({projects}: {projects: ClientProfileProject[]}) => {
     ]
     return(
         <>
-            <Container sx={{bgcolor: '#F5F5F5', borderRadius: '3rem', mb: 3}}>
+            <Container  sx={{bgcolor: '#F5F5F5', marginBlock: "30px", borderRadius: '3rem', mb: 3}}>
                 <Grid>
                     <Tabs
                         value={value}
