@@ -41,9 +41,7 @@ export const EditFormDialog = ({isEditClicked, setIsEditClicked}: props) => {
     }
     
     return(      
-        <>
-            {/* هاي رح اشيلها */}
-            <Button onClick={()=> setIsEditClicked(true)}>Edit</Button>      
+        <>     
             <Dialog open={isEditClicked} onClose={()=> setIsEditClicked(false)}>
                 <DialogTitle><b>Edit Job Details</b></DialogTitle>
                     <Formik

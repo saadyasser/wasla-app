@@ -1,12 +1,12 @@
+'use client'
 import { Tabs, Tab, Container, GridLegacy as Grid } from "@mui/material";
 import { useState } from "react";
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
-import { ActiveContracts } from "./MyJobs/ActiveContracts";
-import { PostedJobs } from "./MyJobs/PostedJobs";
-import { ClientProfileProject } from "@/app/client-profile/page";
+import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined'; //this
+import { Sumiteed } from "./Sumiteed";     //this
 
-export const MiddleTabs = ({projects}: {projects: ClientProfileProject[]}) => {
+export const Subm = () => {
     const [value, setValue] = useState<number>(0)
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue)
@@ -14,7 +14,7 @@ export const MiddleTabs = ({projects}: {projects: ClientProfileProject[]}) => {
     const labels: {Icon: React.ElementType, title: string, number: number}[] = [
         {Icon: WorkOutlineIcon, title: 'Active Contracts', number: 1},
         {Icon: DescriptionOutlinedIcon, title: 'Posted Jobs', number: 2},
-        {Icon: DescriptionOutlinedIcon, title: 'Submitted Applications', number: 2}
+        {Icon: AssignmentTurnedInOutlinedIcon, title: 'Ready Applications', number: 2}
     ]
     return(
         <>
@@ -51,8 +51,8 @@ export const MiddleTabs = ({projects}: {projects: ClientProfileProject[]}) => {
                     </Tabs>
                 </Grid>
             </Container>
-            {value === 0 && <ActiveContracts projects={projects} />}
-            {value === 1 && <PostedJobs projects={projects} />}
+            {/* this */}
+            {value === 2 && <Sumiteed />}
         </>
     )
 }
