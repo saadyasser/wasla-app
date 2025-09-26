@@ -7,7 +7,7 @@ export interface ClientProfileProject {
   id: number
   title: string
   description: string
-  status: status
+  status: "in-progress" | "completed" | "open"
   budget: number
   duration: string
   deadline: string
