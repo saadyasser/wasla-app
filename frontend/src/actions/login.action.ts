@@ -25,7 +25,7 @@ export type LoginResponse = {
 }
 
 export async function loginViaApi(payload: LoginPayload): Promise<LoginResponse> {
-  const endpointBase = process.env.NEXT_PUBLIC_API_BASE_URL || "http://127.0.0.1:6565/api/v1"
+  const endpointBase = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:6565/api/v1"
   const url = `${endpointBase.replace(/\/$/, '')}/login`
   const response = await fetch(url, {
     method: "POST",
