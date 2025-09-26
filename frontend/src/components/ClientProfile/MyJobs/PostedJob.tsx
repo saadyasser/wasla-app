@@ -40,7 +40,7 @@ export const PostedJob = ({job}: props) => {
                         job.status === Status.Closed && 
                         <Box display={'flex'} alignItems={'center'} gap={.5} sx={{color:'#4A5565'}}>
                             <TaskAltIcon fontSize="small"/>
-                            <Typography fontSize={'small'}>{job.numberOfHired} hired</Typography>
+                            {/* <Typography fontSize={'small'}>{job.numberOfHired} hired</Typography> */}
                         </Box>
                     }
                 </Box>
