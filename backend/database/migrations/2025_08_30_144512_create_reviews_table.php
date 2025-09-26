@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
             $table->foreignId('freelancer_profile_id')->constrained('freelancer_profiles')->onDelete('cascade');
             $table->foreignId('client_profile_id')->constrained('client_profiles')->onDelete('cascade');
-            $table->integer('rating')->between(1, 5);
+            $table->unsignedTinyInteger('rating');
             $table->text('comment')->nullable();
             $table->timestamps();
         });

@@ -26,17 +26,4 @@ class UpdateProjectRequest extends FormRequest
             'skills.*' => 'exists:skills,id'
         ];
     }
-
-    public function update(UpdateProjectRequest $request, Project $project)
-    {
-        $this->authorize('update', $project); // تحقق أن العميل صاحب المشروع
-
-
-        $data = $request->validated();
-
-
-        $updatedProject = $this->service->updateProject($project, $data);
-
-        return $this->successResponse($updatedProject, 'Project updated successfully');
-    }
 }

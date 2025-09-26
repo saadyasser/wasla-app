@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\API\V1\FreelancerProfile;
+namespace App\Http\Requests\API\V1;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProposalRequest extends FormRequest
+class UpdateReviewRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,10 +22,8 @@ class ProposalRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cover_letter' => 'required|string',
-            'budget'       => 'required|numeric|min:1',
-            'estimated_duration'     => 'required|string',
-            'attachment'   => 'nullable|file|mimes:pdf,doc,docx|max:10240'
+            'rating'  => 'sometimes|required|integer|min:1|max:5',
+            'comment' => 'sometimes|nullable|string|max:2000',
         ];
     }
 }

@@ -7,6 +7,7 @@ use App\Models\Proposal;
 use App\Http\Traits\ApiResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\Freelancer\ProposalResource;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Http\Requests\API\V1\FreelancerProfile\ProposalRequest;
 use App\Http\Requests\API\V1\FreelancerProfile\UpdateProposalRequest;
@@ -47,7 +48,11 @@ class ProposalController extends Controller
 
         $proposal = Proposal::create($data);
 
-        return $this->successResponse($proposal, 'Proposal submitted successfully', 201);
+        return $this->successResponse(
+            new ProposalResource($proposal),
+            'Proposal submitted successfully',
+            201
+        );
     }
 
 
