@@ -5,7 +5,6 @@ namespace App\Policies;
 use App\Models\User;
 use App\Models\Proposal;
 use App\Enums\ProjectStatus;
-use Illuminate\Auth\Access\Response;
 
 class ProposalPolicy
 {
@@ -26,12 +25,38 @@ class ProposalPolicy
     }
 
     /**
-     * Determine whether the user can create models.
+     * Determine whether the user can create models (apply to a project).
      */
-    public function create(User $user, $project): bool
+    public function create(User $user, $project)
     {
-        return $user->freelancerProfile !== null
-            && $project->status->value === ProjectStatus::Open->value;
+        // تحقق إذا للمستخدم ملف Freelancer
+        if ($user->freelancerProfile === null) {
+            abort(response()->json([
+                'code' => 403,
+                'message' => 'You need a freelancer profile to apply.',
+                'data' => null,
+            ], 403));
+        }
+
+        // تحقق إذا المشروع مفتوح
+        if ($project->status->value !== ProjectStatus::Open->value) {
+            abort(response()->json([
+                'code' => 403,
+                'message' => 'You can only apply to open projects.',
+                'data' => null,
+            ], 403));
+        }
+
+        // تحقق إذا المستخدم قدم عرض سابق
+        if ($project->proposals()->where('freelancer_profile_id', $user->freelancerProfile->id)->exists()) {
+            abort(response()->json([
+                'code' => 409,
+                'message' => 'You have already applied to this project.',
+                'data' => null,
+            ], 409));
+        }
+
+        return true;
     }
 
     /**
@@ -69,9 +94,11 @@ class ProposalPolicy
         return false;
     }
 
+    /**
+     * Determine whether the user can accept the proposal.
+     */
     public function accept(User $user, Proposal $proposal)
     {
-
         return $user->clientProfile->id === $proposal->project->client_profile_id;
     }
 }

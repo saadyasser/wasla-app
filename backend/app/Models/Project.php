@@ -112,24 +112,39 @@ class Project extends Model
 
     public function scopeFilter($query, $filters)
     {
+        // Search text (case-insensitive)
         if (!empty($filters['search'])) {
-            $query->where(function ($q) use ($filters) {
-                $q->where('title', 'like', "%{$filters['search']}%")
-                    ->orWhere('description', 'like', "%{$filters['search']}%");
+            $search = $filters['search'];
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'LIKE', "%{$search}%")
+                    ->orWhere('description', 'LIKE', "%{$search}%")
+                    ->orWhereHas('skills', function ($q2) use ($search) {
+                        $q2->where('name', 'LIKE', "%{$search}%");
+                    });
             });
         }
 
+        // Budget range
         if (!empty($filters['budget_min']) && !empty($filters['budget_max'])) {
             $query->whereBetween('budget', [$filters['budget_min'], $filters['budget_max']]);
+        } elseif (!empty($filters['budget_max'])) {
+            $query->where('budget', '<=', $filters['budget_max']);
+        } elseif (!empty($filters['budget_min'])) {
+            $query->where('budget', '>=', $filters['budget_min']);
         }
 
+
+        // Experience level
         if (!empty($filters['experience_level'])) {
             $query->where('experience_level', $filters['experience_level']);
         }
 
+        // Skills filter (accepts string "1,2,3" or array [1,2,3])
         if (!empty($filters['skills'])) {
-            $skills = explode(',', $filters['skills']);
-            $query->whereHas('skills', fn($q) => $q->whereIn('skills.id', $skills));
+            $skills = is_array($filters['skills']) ? $filters['skills'] : explode(',', $filters['skills']);
+            $query->whereHas('skills', function ($q) use ($skills) {
+                $q->whereIn('skills.id', $skills);
+            });
         }
 
         return $query;

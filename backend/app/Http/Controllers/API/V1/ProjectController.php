@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Models\Project;
+use Illuminate\Http\Request;
 use App\Http\Traits\ApiResponse;
 use App\Services\ProjectService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\ProjectCollection;
 use App\Http\Resources\Freelancer\ProjectResource;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Http\Requests\API\V1\ClientProfile\Project\StoreProjectRequest;
 use App\Http\Requests\API\V1\ClientProfile\Project\UpdateProjectRequest;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ProjectController extends Controller
 {
@@ -24,9 +25,11 @@ class ProjectController extends Controller
         $this->service = $service;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $projects = $this->service->getAllProjects();
+        $filters = $request->only(['search', 'budget_min', 'budget_max', 'experience_level', 'skills']);
+
+        $projects = $this->service->getAllProjects($filters);
 
         $projectsCollection = new ProjectCollection($projects);
 
