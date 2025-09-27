@@ -1,5 +1,7 @@
-# Freelancing Platform for Palestinian Freelancers
-**Wasla APP** 
+# Freelancing Platform for Palestinian Freelancers - Wasla 
+
+<img width="6001" height="4501" alt="Galaxy Tab S8 Ultra" src="https://github.com/user-attachments/assets/095d4429-8cb8-4e0a-948f-7346202c861f" />
+
 ## 📌 Project Overview
 Many Palestinian freelancers struggle to find work because of unstable internet and electricity.  
 This creates mistrust from clients, even though the freelancers have the skills to complete projects.  
@@ -11,6 +13,9 @@ Our platform provides a trustworthy environment where freelancers can showcase t
 - Ratings and feedback build trust.
 - New graduates get training and certificates.
 - Future AI recommendations will match freelancers to projects based on skills and personal challenges.
+
+  <img width="1000" height="880" alt="logo" src="https://github.com/user-attachments/assets/e1f7a02e-7bba-4040-bc03-bb330c46edbf" />
+
 
 ---
 
@@ -25,7 +30,9 @@ Our platform provides a trustworthy environment where freelancers can showcase t
 
 ---
 
+
 ## ⚙️ Technologies Used
+- **UI/UX:** Figma.
 - **Backend:** PHP, Laravel  
 - **Frontend:** React, TypeScript, JavaScript, CSS, Tailwind CSS, Material-UI, NextAuth, Fetch API.
 - **Database:** MySQL  
@@ -52,11 +59,10 @@ Our platform provides a trustworthy environment where freelancers can showcase t
 ---
 
 ## 🎨 UX/UI Designs
-> Add screenshots or links to your wireframes / mockups (Figma, XD …)
 
-- [Figma](https://www.figma.com/design/NVcLpqeada1B1irccKxkTC/Palestinian-Freelancer-Connection-Platform?node-id=0-1&p=f&t=L90lO7AxSkAurNVO-0)
 
 ---
+
 
 ## 📝 Class Diagram / ERD
 > Add your **class diagram** or **entity relationship diagram** here.
