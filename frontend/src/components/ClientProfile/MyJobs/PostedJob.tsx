@@ -65,11 +65,9 @@ export const PostedJob = ({job}: props) => {
                             </>
                         }
                     </Typography>
-                    {
-                        job.status === Status.Open && 
-                        <PostedJobButton handleClick={()=> setIsEditClicked(true)} content="Edit Job" Icon={DescriptionOutlinedIcon}/>
-                    }
+                    
                     {/* you need to psass job id */}
+                    <PostedJobButton handleClick={()=> setIsEditClicked(true)} content="Edit Job" Icon={DescriptionOutlinedIcon}/>
                     <EditFormDialog isEditClicked={isEditClicked} setIsEditClicked={setIsEditClicked}/>
                 </Box>
             </CardContent>
