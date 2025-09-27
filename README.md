@@ -24,7 +24,7 @@ Our platform provides a trustworthy environment where freelancers can showcase t
 |------|------|
 | [Eman Hjazi](https://github.com/Eman-Hjazi) | Backend Developer |
 | [Mustafa](https://github.com/MustafaGitHub) | Backend Developer |
-| [Raghad](https://github.com/RaghadGitHub) | Frontend Developer |
+| [Raghad Abu Zainih](https://github.com/raghadabuzainih) | Frontend Developer |
 | [Saad](https://github.com/SaadGitHub) | Frontend Developer |
 | [Doaa](https://github.com/DoaaGitHub) | UX/UI Designer |
 
