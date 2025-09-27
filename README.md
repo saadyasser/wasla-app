@@ -198,6 +198,52 @@ php artisan serve
 
 5- Open browser at http://localhost:3000 (frontend) and http://127.0.0.1:8000 (backend)
 
-## 📄 License
+## Screenshots
+<img width="1890" height="800" alt="1" src="https://github.com/user-attachments/assets/a1ac73fb-0f98-4d23-882f-32f4339b16dd" />
+
+
+<img width="1899" height="919" alt="2" src="https://github.com/user-attachments/assets/29cf0f2a-8182-45ba-a7bb-2c1cf9ca8572" />
+
+
+<img width="1920" height="904" alt="3" src="https://github.com/user-attachments/assets/cd8c45a1-3d21-4c6a-a01e-04d5b0298420" />
+
+
+<img width="1920" height="921" alt="4" src="https://github.com/user-attachments/assets/319bee9a-6ce9-492c-87d5-9be1e1dc6439" />
+
+
+<img width="1920" height="924" alt="5" src="https://github.com/user-attachments/assets/85cac871-1b48-47f2-b226-fc45c87d7a35" />
+
+
+<img width="1920" height="923" alt="6" src="https://github.com/user-attachments/assets/818c7fa5-6a2d-45fa-adb6-340e7f61f139" />
+
+
+<img width="1920" height="863" alt="7" src="https://github.com/user-attachments/assets/34052fcc-8b40-4849-9e38-51578e9a374c" />
+
+
+<img width="1920" height="911" alt="8" src="https://github.com/user-attachments/assets/81c79ef8-1631-43bc-9eef-8b9128ae63e8" />
+
+
+<img width="1920" height="915" alt="9" src="https://github.com/user-attachments/assets/685d808d-0bcb-4689-8e38-c58879b99021" />
+
+
+<img width="1920" height="912" alt="10" src="https://github.com/user-attachments/assets/8bb07cca-52a9-4b04-bf10-64ad14043566" />
+
+
+<img width="1920" height="909" alt="11" src="https://github.com/user-attachments/assets/0969b17b-b63a-4208-ae7d-da29b7a9bb45" />
+
+
+<img width="1920" height="773" alt="12" src="https://github.com/user-attachments/assets/44853144-0be4-415c-8f5f-dd3e67053b7e" />
+
+
+<img width="1542" height="835" alt="13 (2)" src="https://github.com/user-attachments/assets/3eebf966-b6ba-45d4-adeb-517ad83950c6" />
+
+
+<img width="1920" height="922" alt="14" src="https://github.com/user-attachments/assets/b9e988e4-18da-4ae6-96b5-e061fbd8ab0d" />
+
+
+<img width="1920" height="910" alt="15" src="https://github.com/user-attachments/assets/66c3fdc5-1ad4-4c2a-8c7f-bc5bf044fa0e" />
+
+
+<img width="1920" height="833" alt="16" src="https://github.com/user-attachments/assets/ceac15fa-05a7-4b63-9755-ba3ded6a0908" />
 
 MIT License
