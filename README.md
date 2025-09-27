@@ -46,7 +46,10 @@ Our platform provides a trustworthy environment where freelancers can showcase t
 - **Project Management:** Clients can post projects; freelancers can browse and submit proposals.  
 - **Applications/Proposals:** Freelancers apply; clients accept/reject.  
 - **Ratings & Reviews:** Clients can rate freelancers after project completion.  
-- **Search & Filtering:** Projects filtered by skills or categories.  
+- **Search & Filtering:** Projects filtered by skills or categories.
+
+<img width="4500" height="3000" alt="HandsHoldingTabletProMockup" src="https://github.com/user-attachments/assets/4398f203-f6e5-451c-bea8-79d80b532ceb" />
+
 
 ---
 
