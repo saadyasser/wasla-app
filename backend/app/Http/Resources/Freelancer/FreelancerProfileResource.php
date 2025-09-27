@@ -4,7 +4,7 @@ namespace App\Http\Resources\Freelancer;
 
 use App\Http\Resources\UserResource;
 
-use App\Http\Resources\Freelancer\{EducationResource, SocialLinkResource, CertificationResource, SkillResource, PortfolioResource, ProjectResource};
+use App\Http\Resources\Freelancer\{EducationResource, SocialLinkResource, CertificationResource, SkillResource, PortfolioResource, FreelancerProjectResource};
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -35,7 +35,7 @@ class FreelancerProfileResource extends JsonResource
             // relations
             'skills' => SkillResource::collection($this->whenLoaded('skills')),
             'portfolios' => PortfolioResource::collection($this->whenLoaded('portfolios')),
-            'projects' => ProjectResource::collection($this->whenLoaded('projects')),
+            'projects' => FreelancerProjectResource::collection($this->whenLoaded('projects')),
             'social_links' => SocialLinkResource::collection($this->whenLoaded('socialLinks')),
             'certifications' => CertificationResource::collection($this->whenLoaded('certifications')),
             'educations' => EducationResource::collection($this->whenLoaded('educations')),

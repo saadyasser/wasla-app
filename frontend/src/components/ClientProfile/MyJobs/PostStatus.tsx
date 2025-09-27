@@ -1,7 +1,7 @@
 import { Chip } from "@mui/material"
 import { Status } from "@/types/PostedJob"
 
-type props = {postStatus: Status}
+type props = {postStatus: "in-progress" | "completed" | "open"}
 
 export const PostStatus = ({postStatus}: props) => {
     return(

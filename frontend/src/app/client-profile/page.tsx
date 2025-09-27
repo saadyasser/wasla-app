@@ -1,17 +1,18 @@
 import { NavBar } from "@/components/ClientProfile/NavBar"
 import { auth } from "../../../auth"
+import { status } from "@/types/RecentJob"
 
 // Types for the client profile API response
 export interface ClientProfileProject {
   id: number
   title: string
   description: string
-  status: "open" | "in-progress" | "completed"
+  status: "in-progress" | "completed" | "open"
   budget: number
   duration: string
   deadline: string
   completed_at: string | null
-  rating: string | null
+  rating: number | undefined
   experience_level: string
   created_at_human: string
   proposals_count: number | null

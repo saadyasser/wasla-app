@@ -27,16 +27,22 @@ const validationSchema = Yup.object({
     .test("fileFormat", ("CV format"), (value: any) => 
         value && ["image/png", "image/jpg", "application/pdf"].includes(value.type)
     )
+    .test("fileSize", "File size must not exceed 10 MB", (value: any) =>
+      value && value.size <= 10 * 1024 * 1024
+    )
 })
 
 export const ApplyForm = ({accessToken}: {accessToken?: string}): ReactNode => {
     const [showSuccessSubmession, setShowSuccessSubmession] = useState<boolean>(false)
     const fileInputRef = useRef<HTMLInputElement>(null)
     const [fileName, setFileName] = useState<string>("")
+    const [sumbitMessage, setSubmitMuessege] = useState("Submit Your Proposal")
+    const [open, setOpen] = useState(false)
     return(
+        <>
         <Card sx={{p: 3, mb: 3, boxShadow: 2, borderRadius: 3}}>
             <Typography variant="h6" sx={{fontWeight: 'bold', color: '#364153'}} pb={3}>
-                Submit Your Proposal
+                {sumbitMessage}
             </Typography>
             <Formik
                 initialValues={initialValues}
@@ -69,9 +75,10 @@ export const ApplyForm = ({accessToken}: {accessToken?: string}): ReactNode => {
                         setShowSuccessSubmession(true)
                     } catch (error) {
                         console.error('Failed to submit application:', error)
-                        alert('Failed to submit application. Please try again.')
                     } finally {
                         setSubmitting(false)
+                        setSubmitMuessege("Submitted")
+                        setOpen(true);
                     }
                 }}
             >
@@ -161,5 +168,9 @@ export const ApplyForm = ({accessToken}: {accessToken?: string}): ReactNode => {
                 message="Form Submitted Successfully"
             />
         </Card>
+        <FeedbackAlert severity="success" message="The process is completed successfully." open={open} onClose={() => {
+            setOpen(false)
+        }}/>
+        </>
     )
 }

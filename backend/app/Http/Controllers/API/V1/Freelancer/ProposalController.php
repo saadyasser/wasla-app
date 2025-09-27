@@ -7,6 +7,8 @@ use App\Models\Proposal;
 use App\Http\Traits\ApiResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Services\Freelancer\ProposalService;
+use App\Http\Resources\Freelancer\ProposalResource;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Http\Requests\API\V1\FreelancerProfile\ProposalRequest;
 use App\Http\Requests\API\V1\FreelancerProfile\UpdateProposalRequest;
@@ -16,40 +18,33 @@ class ProposalController extends Controller
     use ApiResponse;
     use AuthorizesRequests;
 
+    protected ProposalService $proposalService;
 
-    public function store(ProposalRequest $request,  Project $project)
+    public function __construct(ProposalService $proposalService)
     {
-        $freelancer = Auth::user()->freelancerProfile;
-
-        // Policy يتحقق من كل الشروط
-        $this->authorize('create', [Proposal::class, $project]);
-
-        $alreadyApplied = Proposal::where('project_id', $project->id)
-            ->where('freelancer_profile_id', $freelancer->id)
-            ->exists();
-
-        if ($alreadyApplied) {
-            return $this->errorResponse('You have already applied to this project.', 409);
-        }
-
-        $attachmentPath = $request->hasFile('attachment')
-            ? $request->file('attachment')->storeAs(
-                "attachments/{$freelancer->id}",
-                time() . '_' . $request->file('attachment')->getClientOriginalName(),
-                'public'
-            )
-            : null;
-
-        $data = $request->validated();
-        $data['project_id'] = $project->id;
-        $data['freelancer_profile_id'] = $freelancer->id;
-        $data['attachment'] = $attachmentPath;
-
-        $proposal = Proposal::create($data);
-
-        return $this->successResponse($proposal, 'Proposal submitted successfully', 201);
+        $this->proposalService = $proposalService;
     }
 
+    public function store(ProposalRequest $request, $projectId)
+    {
+        $project = Project::find($projectId);
+
+        if (! $project) {
+            return $this->errorResponse('Project not found', 404);
+        }
+
+        $freelancer = Auth::user()->freelancerProfile;
+
+        $this->authorize('create', [Proposal::class, $project]);
+
+        try {
+            $proposal = $this->proposalService->createProposal($request, $freelancer->id, $project->id);
+        } catch (\Exception $e) {
+            return $this->errorResponse($e->getMessage(), 409);
+        }
+
+        return $this->successResponse(new ProposalResource($proposal), 'Proposal submitted successfully', 201);
+    }
 
 
     public function update(UpdateProposalRequest $request, Proposal $proposal)
@@ -57,18 +52,15 @@ class ProposalController extends Controller
         $this->authorize('update', $proposal);
 
         $data = $request->validated();
-
-        $proposal->update($data);
+        $proposal = $this->proposalService->updateProposal($proposal, $data);
 
         return $this->successResponse($proposal, 'Proposal updated successfully');
     }
 
     public function destroy(Proposal $proposal)
     {
-        $this->authorize('delete', $proposal); // يتحقق من Policy تلقائياً
-
-        $proposal->delete();
-
+        $this->authorize('delete', $proposal);
+        $this->proposalService->deleteProposal($proposal);
         return $this->successResponse([], 'Proposal deleted successfully', 200);
     }
 }

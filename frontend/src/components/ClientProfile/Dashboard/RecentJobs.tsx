@@ -36,7 +36,6 @@ export const RecentJobs = ({projects}: {projects: ClientProfileProject[]}) => {
             <CardContent>
                 <Box display={'flex'} justifyContent={'space-between'} mb={4} alignItems={'center'}>
                     <Typography fontSize={'large'} sx={{color: '#101828'}} fontWeight={'bold'}>Recent Jobs</Typography>
-                    <Button content='View All' color='success' endIcon={<ArrowRightAltIcon />}/>
                 </Box>
                 <Grid display={'grid'} gap={3}>
                   {projects.map((job, index) =>

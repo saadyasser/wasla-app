@@ -19,7 +19,7 @@ export const ApplyForJob = ({job, accessToken}: props): ReactNode => {
     return(
         <Container>
             <Button onClick={()=> router.push('/jobs')} fontColor="#1A1A1A" startIcon={<KeyboardBackspaceIcon />} content="Back to Jobs"/>
-            <Card sx={{p: 1, mb: 4, boxShadow: 2, borderRadius: 3}}>
+            <Card sx={{p: 1, mb: 4, mt:2, boxShadow: 2, borderRadius: 3}}>
                 <CardContent>
                     <Header
                         title={job.title}

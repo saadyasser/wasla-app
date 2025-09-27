@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Project;
 use App\Models\Proposal;
 use App\Models\FreelancerProfile;
+use App\Enums\ProposalStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -12,12 +13,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ProposalFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-   protected $model = Proposal::class;
+    protected $model = Proposal::class;
 
     public function definition()
     {
@@ -27,7 +23,8 @@ class ProposalFactory extends Factory
             'cover_letter' => $this->faker->paragraph(),
             'attachment' => null,
             'budget' => $this->faker->randomFloat(2, 100, 10000),
-            'timeline' => $this->faker->randomElement(['1 week', '2 weeks', '1 month']),
+            'estimated_duration' => $this->faker->randomElement(['1 week', '2 weeks', '1 month']),
+            'status' => $this->faker->randomElement(array_column(ProposalStatus::cases(), 'value')),
         ];
     }
 }
