@@ -1,5 +1,7 @@
-# Freelancing Platform for Palestinian Freelancers
-**Wasla APP** 
+# Freelancing Platform for Palestinian Freelancers - Wasla 
+
+<img width="6001" height="4501" alt="Galaxy Tab S8 Ultra" src="https://github.com/user-attachments/assets/095d4429-8cb8-4e0a-948f-7346202c861f" />
+
 ## 📌 Project Overview
 Many Palestinian freelancers struggle to find work because of unstable internet and electricity.  
 This creates mistrust from clients, even though the freelancers have the skills to complete projects.  
@@ -11,6 +13,9 @@ Our platform provides a trustworthy environment where freelancers can showcase t
 - Ratings and feedback build trust.
 - New graduates get training and certificates.
 - Future AI recommendations will match freelancers to projects based on skills and personal challenges.
+
+  <img width="1000" height="880" alt="logo" src="https://github.com/user-attachments/assets/e1f7a02e-7bba-4040-bc03-bb330c46edbf" />
+
 
 ---
 
@@ -25,7 +30,9 @@ Our platform provides a trustworthy environment where freelancers can showcase t
 
 ---
 
+
 ## ⚙️ Technologies Used
+- **UI/UX:** Figma.
 - **Backend:** PHP, Laravel  
 - **Frontend:** React, TypeScript, JavaScript, CSS, Tailwind CSS, Material-UI, NextAuth, Fetch API.
 - **Database:** MySQL  
@@ -52,11 +59,10 @@ Our platform provides a trustworthy environment where freelancers can showcase t
 ---
 
 ## 🎨 UX/UI Designs
-> Add screenshots or links to your wireframes / mockups (Figma, XD …)
 
-- [Figma](https://www.figma.com/design/NVcLpqeada1B1irccKxkTC/Palestinian-Freelancer-Connection-Platform?node-id=0-1&p=f&t=L90lO7AxSkAurNVO-0)
 
 ---
+
 
 ## 📝 Class Diagram / ERD
 > Add your **class diagram** or **entity relationship diagram** here.
@@ -189,46 +195,6 @@ php artisan serve
 
 5- Open browser at http://localhost:3000 (frontend) and http://127.0.0.1:8000 (backend)
 
-## Screenshots
-
-<img width="527" height="915" alt="signup" src="https://github.com/user-attachments/assets/a8927cc2-d0d0-44f6-938c-c9c4c0e7750b" />
-
-<img width="502" height="871" alt="signin" src="https://github.com/user-attachments/assets/803991b4-2f6b-4c83-9552-2dd6e2f865b7" />
-
-<img width="1890" height="800" alt="1" src="https://github.com/user-attachments/assets/a1ac73fb-0f98-4d23-882f-32f4339b16dd" />
-
-<img width="1899" height="919" alt="2" src="https://github.com/user-attachments/assets/29cf0f2a-8182-45ba-a7bb-2c1cf9ca8572" />
-
-<img width="1920" height="904" alt="3" src="https://github.com/user-attachments/assets/cd8c45a1-3d21-4c6a-a01e-04d5b0298420" />
-
-<img width="1920" height="921" alt="4" src="https://github.com/user-attachments/assets/319bee9a-6ce9-492c-87d5-9be1e1dc6439" />
-
-<img width="1920" height="924" alt="5" src="https://github.com/user-attachments/assets/85cac871-1b48-47f2-b226-fc45c87d7a35" />
-
-<img width="1920" height="923" alt="6" src="https://github.com/user-attachments/assets/818c7fa5-6a2d-45fa-adb6-340e7f61f139" />
-
-<img width="1920" height="863" alt="7" src="https://github.com/user-attachments/assets/34052fcc-8b40-4849-9e38-51578e9a374c" />
-
-<img width="1920" height="911" alt="8" src="https://github.com/user-attachments/assets/81c79ef8-1631-43bc-9eef-8b9128ae63e8" />
-
-<img width="1920" height="915" alt="9" src="https://github.com/user-attachments/assets/685d808d-0bcb-4689-8e38-c58879b99021" />
-
-<img width="1920" height="912" alt="10" src="https://github.com/user-attachments/assets/8bb07cca-52a9-4b04-bf10-64ad14043566" />
-
-<img width="1920" height="909" alt="11" src="https://github.com/user-attachments/assets/0969b17b-b63a-4208-ae7d-da29b7a9bb45" />
-
-<img width="1920" height="773" alt="12" src="https://github.com/user-attachments/assets/44853144-0be4-415c-8f5f-dd3e67053b7e" />
-
-<img width="1542" height="835" alt="13 (2)" src="https://github.com/user-attachments/assets/3eebf966-b6ba-45d4-adeb-517ad83950c6" />
-
-<img width="891" height="338" alt="pomp" src="https://github.com/user-attachments/assets/1a7b669f-7ecf-49cd-9814-9a33fd5e8d43" />
-
-<img width="1920" height="922" alt="14" src="https://github.com/user-attachments/assets/b9e988e4-18da-4ae6-96b5-e061fbd8ab0d" />
-
-<img width="1920" height="910" alt="15" src="https://github.com/user-attachments/assets/66c3fdc5-1ad4-4c2a-8c7f-bc5bf044fa0e" />
-
-<img width="1920" height="833" alt="16" src="https://github.com/user-attachments/assets/ceac15fa-05a7-4b63-9755-ba3ded6a0908" />
-
-
+## 📄 License
 
 MIT License
