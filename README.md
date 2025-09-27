@@ -24,9 +24,9 @@ Our platform provides a trustworthy environment where freelancers can showcase t
 |------|------|
 | [Eman Hjazi](https://github.com/Eman-Hjazi) | Backend Developer |
 | [Mustafa](https://github.com/MustafaGitHub) | Backend Developer |
+| [Raghad](https://github.com/RaghadGitHub) | Frontend Developer |
 | [Saad](https://github.com/SaadGitHub) | Frontend Developer |
 | [Doaa](https://github.com/DoaaGitHub) | UX/UI Designer |
-| [Raghad](https://github.com/RaghadGitHub) | Frontend Developer |
 
 ---
 
@@ -199,21 +199,25 @@ php artisan serve
 5- Open browser at http://localhost:3000 (frontend) and http://127.0.0.1:8000 (backend)
 
 ## Screenshots
+## Landing page
 <img width="1890" height="800" alt="1" src="https://github.com/user-attachments/assets/a1ac73fb-0f98-4d23-882f-32f4339b16dd" />
 
 
 <img width="1899" height="919" alt="2" src="https://github.com/user-attachments/assets/29cf0f2a-8182-45ba-a7bb-2c1cf9ca8572" />
 
 
+## Projects page
 <img width="1920" height="904" alt="3" src="https://github.com/user-attachments/assets/cd8c45a1-3d21-4c6a-a01e-04d5b0298420" />
 
 
+## Apply for job
 <img width="1920" height="921" alt="4" src="https://github.com/user-attachments/assets/319bee9a-6ce9-492c-87d5-9be1e1dc6439" />
 
 
 <img width="1920" height="924" alt="5" src="https://github.com/user-attachments/assets/85cac871-1b48-47f2-b226-fc45c87d7a35" />
 
 
+## Client Profile
 <img width="1920" height="923" alt="6" src="https://github.com/user-attachments/assets/818c7fa5-6a2d-45fa-adb6-340e7f61f139" />
 
 
@@ -226,6 +230,7 @@ php artisan serve
 <img width="1920" height="915" alt="9" src="https://github.com/user-attachments/assets/685d808d-0bcb-4689-8e38-c58879b99021" />
 
 
+## Post new job
 <img width="1920" height="912" alt="10" src="https://github.com/user-attachments/assets/8bb07cca-52a9-4b04-bf10-64ad14043566" />
 
 
@@ -238,6 +243,7 @@ php artisan serve
 <img width="1542" height="835" alt="13 (2)" src="https://github.com/user-attachments/assets/3eebf966-b6ba-45d4-adeb-517ad83950c6" />
 
 
+## Freelancer profile
 <img width="1920" height="922" alt="14" src="https://github.com/user-attachments/assets/b9e988e4-18da-4ae6-96b5-e061fbd8ab0d" />
 
 
