@@ -21,7 +21,7 @@ export const ActiveContract = ({contract}: props) => {
                 </Box>
                 <Box display={'flex'} flexWrap={'wrap'} alignItems={'center'} gap={2}>
                     <Box display={'flex'} alignItems={'center'} gap={.5}>
-                        <Chip sx={{bgcolor: '#006633', color:'white'}} label={contract.client.company_name[0]}/>
+                        <Chip sx={{bgcolor: '#006633', color:'white'}} label={"C"}/>
                         <Typography fontSize={'small'} sx={{color:'#4A5565'}}>{contract.client.company_name}</Typography>
                     </Box>
                     <Box display={'flex'}>

@@ -53,11 +53,9 @@ export default function RegisterForm() {
         password_confirmation: values.password,
         role: values.userType,
       });
-      alert('Account created successfully');
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Registration failed';
       console.error(error);
-      alert(message);
     } finally {
       setSubmitting(false);
     }

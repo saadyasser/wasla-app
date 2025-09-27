@@ -20,7 +20,7 @@ export const MiddleTabs = ({projects}: {projects: ClientProfileProject[]}) => {
     ]
     return(
         <>
-            <Container sx={{bgcolor: '#F5F5F5', borderRadius: '3rem', mb: 3}}>
+            <Container  sx={{bgcolor: '#F5F5F5', marginBlock: "30px", borderRadius: '3rem', mb: 3}}>
                 <Grid>
                     <Tabs
                         value={value}
@@ -32,7 +32,7 @@ export const MiddleTabs = ({projects}: {projects: ClientProfileProject[]}) => {
                         {labels.map((label, index) => {
                             const Icon = label.Icon
                             return <Tab
-                                key={`label-${label}`}
+                                key={`label-${index}`}
                                 value={index}
                                 label={
                                     <span style={{display: 'flex', alignItems: 'center', gap: '8px'}}>

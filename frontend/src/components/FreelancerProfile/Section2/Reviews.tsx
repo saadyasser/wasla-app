@@ -5,7 +5,7 @@ const reviews = [
     {
         client: 'Palestinian Heritage Company',
         completed: new Date(2024, 1, 15),
-        stars: 5,
+        stars: 4,
         description: 'Comprehensive e-commerce platform showcasing Palestinian products with integrated payment solutions and international shipping.',
         project: 'Palestinian E-commerce Platform',
         budget: 3500
@@ -21,7 +21,7 @@ const reviews = [
 ]
 
 //temporary
-const evaluation = 4
+const evaluation = 4.5
 const reviewsNumber = 47
 
 export const Reviews = () => {
@@ -32,7 +32,7 @@ export const Reviews = () => {
                     <CardContent sx={{p: 2}}>
                         <Typography sx={{color: '#006633'}} variant='h3'><b>{evaluation.toFixed(1)}</b></Typography>
                         <Rating value={evaluation} readOnly/>
-                        <Typography color='textSecondary'>Based on {reviewsNumber} reviews</Typography>
+                        <Typography color='textSecondary'>Based on 2 reviews</Typography>
                     </CardContent>
                 </Card>
             </Container>

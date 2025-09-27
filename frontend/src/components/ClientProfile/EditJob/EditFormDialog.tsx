@@ -12,12 +12,12 @@ import { jobValidationSchema } from "@/lib/jobValidator"
 //these initial values you need to change it to contain job that was clicked to edit
 //like 'title': job.title / description: job.description
 const initialValues: PostNewJob = {
-    "title": '',
-    "description": '',
-    "budget": '',
+    "title": 'Mobile App for Food Delivery',
+    "description": 'Works on mobile or cross-platform apps but with strong frontend skills (React Native, Expo, or Flutter for web).',
+    "budget": '500',
     "deadline": null,
     "experience_level": "Intermediate",
-    "skills": []
+    "skills": ['PHP', 'Laravel']
 }
 
 const validationSchema = jobValidationSchema

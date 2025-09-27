@@ -24,7 +24,7 @@ export const NavBar = ({data}: {data: ClientProfileData}) => {
                     >
                         {labels.map((label, index) =>
                             <Tab
-                                key={`tab-${label}`}
+                                key={`tab-${index}`}
                                 label={label}
                                 value={index}
                                 sx={{

@@ -96,15 +96,11 @@ export async function fetchProjects(searchQuery?: string, token?: string): Promi
 
 export default async function FindWorkPage({ searchParams }: FindWorkPageProps) {
   const session = await auth();
-  const searchQuery =  searchParams?.search;
+  const searchQuery = await searchParams?.search;
   
   const accessToken = (session as SessionWithToken | null)?.accessToken;
 
-  
-  // Fetch projects data
   const projects = await fetchProjects(searchQuery, accessToken);
-
- console.log(projects, 'all projects')
 
   return (
     <div className="mt-[30px] 2xl:mt-[50px]">
