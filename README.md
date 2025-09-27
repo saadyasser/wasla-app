@@ -48,8 +48,8 @@ Our platform provides a trustworthy environment where freelancers can showcase t
 - **Ratings & Reviews:** Clients can rate freelancers after project completion.  
 - **Search & Filtering:** Projects filtered by skills or categories.
 
-<img width="4500" height="3000" alt="HandsHoldingTabletProMockup" src="https://github.com/user-attachments/assets/4398f203-f6e5-451c-bea8-79d80b532ceb" />
 
+<img width="4500" height="3000" alt="HandsHoldingTabletProMockup" src="https://github.com/user-attachments/assets/28f76c98-7165-4ce6-bf3c-572d5ec0bb61" />
 
 ---
 
