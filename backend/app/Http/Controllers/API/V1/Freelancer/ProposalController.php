@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Services\Freelancer\ProposalService;
 use App\Http\Resources\Freelancer\ProposalResource;
+use App\Services\Freelancer\ProposalServiceInterface;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Http\Requests\API\V1\FreelancerProfile\ProposalRequest;
 use App\Http\Requests\API\V1\FreelancerProfile\UpdateProposalRequest;
@@ -18,12 +19,7 @@ class ProposalController extends Controller
     use ApiResponse;
     use AuthorizesRequests;
 
-    protected ProposalService $proposalService;
-
-    public function __construct(ProposalService $proposalService)
-    {
-        $this->proposalService = $proposalService;
-    }
+    public function __construct(protected ProposalServiceInterface $proposalService){}
 
     public function store(ProposalRequest $request, $projectId)
     {
