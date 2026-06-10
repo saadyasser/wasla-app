@@ -15,13 +15,6 @@ This system is built on top of Laravel, expanding the standard MVC pattern into 
 > 📘 **Full Architectural Blueprint:**
 > For a deep-dive analysis into the code structures, concrete examples of our design patterns, and SOLID implementations, please refer to the comprehensive [System Architecture Documentation](./docs/architecture.md).
 
-
-## 📊 Database & Schema (ERD)
-
-The database schema is designed to ensure data integrity and optimized filtering for projects and proposals.
-* An interactive, filterable **Entity-Relationship Diagram (ERD)** is available locally.
-* **Interactive ERD:** [View Database ERD](https://htmlpreview.github.io/?https://github.com/Eman-Hjazi/wasla-app/blob/main/backend/docs/erd/index.html)
-
 ## 📡 API Documentation & Live Collection
 
 Our endpoints follow strict RESTful standards and are fully documented, with structured validation rules (`FormRequests`) and safe API responses (`JsonResources`).
